@@ -1,0 +1,26 @@
+{
+  "name": "fingerprintjs-browser-extension-example",
+  "version": "0.0.1",
+  "description": "Playground for browser extension integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -c webpack.config.js",
+    "watch": "webpack -c webpack.config.js --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "copy-webpack-plugin": "^10.2.4",
+    "dotenv": "^16.0.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.2.8",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro": "^3.6.1"
+  }
+}

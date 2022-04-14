@@ -1,0 +1,36 @@
+{
+  "name": "FingerprintJS Example Browser Extension",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "storage",
+    "tabs",
+    "activeTab",
+    "browsingData",
+    "background",
+    "scripting"
+  ],
+  "host_permissions": ["*://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["*.js", "*.json", "*.map"],
+      "matches": ["*://*/*"]
+    }
+  ]
+}
