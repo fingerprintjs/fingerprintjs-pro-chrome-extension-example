@@ -1,5 +1,5 @@
 {
-  "name": "fingerprintjs-browser-extension-example",
+  "name": "fingerprintjs-pro-browser-extension-example",
   "version": "0.0.1",
   "description": "Playground for browser extension integration",
   "main": "index.js",
