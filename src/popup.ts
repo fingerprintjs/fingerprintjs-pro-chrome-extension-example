@@ -5,7 +5,9 @@ let currentWindow: browser.Windows.Window;
 const triggerBtn = document.querySelector<HTMLButtonElement>('#create_window')!;
 const target = document.querySelector('#result')!;
 
-browser.runtime.onMessage.addListener(async message => {
+browser.runtime.onMessageExternal.addListener(async message => {
+  console.log({ message });
+
   if (target && message?.data?.visitorId) {
     triggerBtn.disabled = false;
     target.classList.add('has-result');
@@ -25,7 +27,7 @@ triggerBtn.addEventListener('click', async () => {
   currentWindow = await browser.windows.create({
     url: 'https://przemyslawzydek.com',
     state: 'minimized',
-    type: 'normal',
+    type: 'popup',
   });
 });
 

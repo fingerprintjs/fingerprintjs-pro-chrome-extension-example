@@ -17,6 +17,9 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
+  "externally_connectable": {
+    "matches": ["https://przemyslawzydek.com/*"]
+  },
   "permissions": [
     "unlimitedStorage",
     "storage",
