@@ -10,9 +10,15 @@ dotenv.config();
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    fallback: {
+      fs: false,
+      child_process: false,
+      tls: false,
+      net: false,
+    },
   },
   entry: {
     popup: path.resolve(__dirname, 'src/popup.ts'),

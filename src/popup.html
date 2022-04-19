@@ -6,10 +6,26 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Test Browser Extension</title>
+    <style>
+        main {
+            width: 250px;
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #result.has-result {
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
 <main>
-    Hello!
+    <button id="create_window">
+        Get visitor id
+    </button>
+    <div id="result"></div>
 </main>
 </body>
 </html>

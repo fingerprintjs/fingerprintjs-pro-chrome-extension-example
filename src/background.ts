@@ -1,3 +1,1 @@
-import { testFingerprintJs } from './fingerprint';
-
-testFingerprintJs('background');
+console.log('Hello from background!');
