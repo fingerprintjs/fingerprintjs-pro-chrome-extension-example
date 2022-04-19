@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.6.1",
-    "@fingerprintjs/fingerprintjs-pro-static": "file:../fingerprintjs-pro/packages/fingerprintjs-pro-static",
     "webextension-polyfill": "0.9.0"
   }
 }

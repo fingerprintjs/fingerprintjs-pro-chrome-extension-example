@@ -27,7 +27,6 @@ triggerBtn.addEventListener('click', async () => {
   currentWindow = await browser.windows.create({
     url: 'https://przemyslawzydek.com',
     state: 'minimized',
-    type: 'popup',
   });
 });
 
