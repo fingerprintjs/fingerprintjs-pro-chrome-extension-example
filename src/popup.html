@@ -15,7 +15,7 @@
             justify-content: center;
         }
 
-        #result.has-result {
+        .result-container {
             margin-top: 1rem;
         }
     </style>
@@ -23,9 +23,12 @@
 <body>
 <main>
     <button id="create_window">
-        Get visitor id
+        Get your visitor id
     </button>
-    <div id="result"></div>
+    <div class="result-container">
+        Your visitorId:
+        <span id="result"></span>
+    </div>
 </main>
 </body>
 </html>

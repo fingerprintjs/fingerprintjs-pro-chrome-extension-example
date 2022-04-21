@@ -21,12 +21,6 @@
     "matches": ["https://przemyslawzydek.com/*"]
   },
   "permissions": [
-    "unlimitedStorage",
-    "storage",
-    "tabs",
-    "activeTab",
-    "browsingData",
-    "background",
-    "scripting"
+    "background"
   ]
 }

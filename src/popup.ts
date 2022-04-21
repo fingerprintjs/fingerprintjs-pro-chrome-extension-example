@@ -10,9 +10,8 @@ browser.runtime.onMessageExternal.addListener(async message => {
 
   if (target && message?.data?.visitorId) {
     triggerBtn.disabled = false;
-    target.classList.add('has-result');
 
-    target.innerHTML = `visitorId: <b>${message.data.visitorId}</b>`;
+    target.innerHTML = `<b>${message.data.visitorId}</b>`;
 
     if (currentWindow?.id) {
       await browser.windows.remove(currentWindow.id);
@@ -21,12 +20,13 @@ browser.runtime.onMessageExternal.addListener(async message => {
 });
 
 triggerBtn.addEventListener('click', async () => {
+  target.innerHTML = '';
   triggerBtn.disabled = true;
-  target.classList.remove('has-result');
 
   currentWindow = await browser.windows.create({
     url: 'https://przemyslawzydek.com',
     state: 'minimized',
+    type: 'normal',
   });
 });
 
