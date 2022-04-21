@@ -29,6 +29,7 @@ module.exports = {
     filename: '[name].js',
     path: outDir,
     clean: true,
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -47,6 +48,14 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -57,6 +66,15 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'manifest.json'),
           to: outDir,
+        },
+      ],
+    }),
+
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.join(outDir, 'assets'),
         },
       ],
     }),

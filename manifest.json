@@ -1,13 +1,17 @@
 {
   "name": "FingerprintJS Example Browser Extension",
+  "description": "This is a sample browser extension that demonstrates how to use the FingerprintJS library.",
   "version": "0.0.1",
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html"
   },
+  "icons": {
+    "128": "assets/logo.png"
+  },
   "content_scripts": [
     {
-      "matches": ["https://przemyslawzydek.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ],
@@ -22,5 +26,11 @@
   },
   "permissions": [
     "background"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": [ "*://*/*" ]
+    }
   ]
 }
