@@ -1,19 +1,25 @@
 {
   "name": "fingerprintjs-pro-browser-extension-example",
   "version": "0.0.1",
+  "private": true,
   "description": "Playground for browser extension integration",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -c webpack.config.js",
-    "watch": "webpack -c webpack.config.js --watch"
+    "zip": "npm run build && cd build && zip -r ../build.zip *",
+    "watch": "webpack -c webpack.config.js --watch",
+    "build:website": "cd website && yarn run build",
+    "start:website": "cd website && yarn run start"
   },
+  "workspaces": ["website"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/chrome": "0.0.181",
     "@types/webextension-polyfill": "^0.8.3",
     "canvas": "^2.9.1",
     "copy-webpack-plugin": "^10.2.4",
+    "clean-webpack-plugin": "^4.0.0",
     "dotenv": "^16.0.0",
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
@@ -22,7 +28,8 @@
     "typescript": "4.6.3",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.8.1",
+    "terser-webpack-plugin": "^5.3.1"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.6.1",

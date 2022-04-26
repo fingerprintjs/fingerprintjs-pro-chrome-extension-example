@@ -22,7 +22,7 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "externally_connectable": {
-    "matches": ["https://przemyslawzydek.com/*"]
+    "matches": ["https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/*"]
   },
   "permissions": [
     "background"

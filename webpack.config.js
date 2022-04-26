@@ -79,7 +79,7 @@ module.exports = {
       ],
     }),
 
-    new webpack.EnvironmentPlugin(['API_KEY']),
+    new webpack.EnvironmentPlugin(['API_KEY', 'WEBSITE_URL']),
 
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'popup.html'),

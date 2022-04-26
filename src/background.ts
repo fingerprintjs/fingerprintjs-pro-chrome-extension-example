@@ -20,9 +20,10 @@ browser.runtime.onMessage.addListener(async (message: Message) => {
     await closeCurrentWindow();
 
     currentWindow = await browser.windows.create({
-      url: 'https://przemyslawzydek.com',
+      url: process.env.WEBSITE_URL as string,
       state: 'minimized',
-      type: 'normal',
+      type: 'popup',
+      focused: false,
     });
 
     return new Promise(resolve => {
