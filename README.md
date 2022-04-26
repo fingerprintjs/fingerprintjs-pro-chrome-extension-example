@@ -2,9 +2,8 @@
 
 This repository contains example browser extension that uses FingerprintJS Pro Agent.
 
-The extension contains **background script**, **popup** and **content script**. All of them call our Pro Agent when they are loaded.
+### How it works
 
-> **Note**: Currently our Pro Agent is broken in browser extension environment, and this repository showcases the issue.
 
 ### Getting started
 

@@ -1,7 +1,6 @@
-import browser from 'webextension-polyfill';
 import { Message } from './types';
 
-const logo = browser.runtime.getURL('assets/logo.png');
+const logo = chrome.runtime.getURL('assets/logo.png');
 
 export function renderFingerprintSection(target: Element) {
   target.innerHTML = `
@@ -85,11 +84,12 @@ function setupFingerprintingProcess(container: Element) {
     triggerBtn.disabled = true;
     triggerBtn.classList.add('loading');
 
-    browser.runtime
-      .sendMessage({
+    chrome.runtime.sendMessage(
+      {
         type: 'get-fingerprint',
-      } as Message)
-      .then(async message => {
+      } as Message,
+
+      message => {
         console.log({ message });
 
         if (target && message?.data?.visitorId) {
@@ -98,6 +98,7 @@ function setupFingerprintingProcess(container: Element) {
 
           target.innerHTML = `<b>${message.data.visitorId}</b>`;
         }
-      });
+      }
+    );
   });
 }
