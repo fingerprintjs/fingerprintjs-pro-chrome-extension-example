@@ -21,7 +21,6 @@ browser.runtime.onMessage.addListener(async (message: Message) => {
 
     currentWindow = await browser.windows.create({
       url: process.env.WEBSITE_URL as string,
-      state: 'minimized',
       type: 'popup',
       focused: false,
     });
