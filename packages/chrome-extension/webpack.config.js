@@ -6,7 +6,9 @@ const dotenv = require('dotenv');
 
 const outDir = path.resolve(__dirname, 'build');
 
-dotenv.config();
+dotenv.config({
+  path: path.resolve(__dirname, '../../.env'),
+});
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',

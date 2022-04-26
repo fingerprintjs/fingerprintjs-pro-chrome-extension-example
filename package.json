@@ -4,14 +4,13 @@
   "private": true,
   "description": "Playground for browser extension integration",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -c webpack.config.js",
-    "zip": "npm run build && cd build && zip -r ../build.zip *",
-    "watch": "webpack -c webpack.config.js --watch",
-    "build:website": "cd website && yarn run build",
-    "start:website": "cd website && yarn run start"
+    "extension:build": "cd packages/chrome-extension && yarn run build",
+    "extension:zip": "cd packages/chrome-extension && yarn run zip",
+    "extension:watch": "cd packages/chrome-extension && yarn run watch",
+    "website:build": "cd packages/website && yarn run build",
+    "webiste:start": "cd packages/website && yarn run start"
   },
-  "workspaces": ["website"],
+  "workspaces": ["packages/**"],
   "author": "",
   "license": "MIT",
   "devDependencies": {

@@ -1,6 +1,7 @@
 {
   "name": "fingerprintjs-playground",
   "version": "0.0.1",
+  "private": true,
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --mode development",

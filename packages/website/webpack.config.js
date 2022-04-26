@@ -4,8 +4,10 @@ const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 
+const outDir = path.resolve(__dirname, 'build');
+
 dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
+  path: path.resolve(__dirname, '../../.env'),
 });
 
 module.exports = (env, { mode = 'development' }) => ({
@@ -39,6 +41,7 @@ module.exports = (env, { mode = 'development' }) => ({
   devtool: mode === 'development' ? 'inline-source-map' : 'source-map',
   output: {
     filename: '[name].js?[contenthash]',
+    path: outDir,
   },
   devServer: {
     host: '0.0.0.0',
