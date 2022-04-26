@@ -1,6 +1,6 @@
 import * as FpJS from '@fingerprintjs/fingerprintjs-pro';
 
-const extensionIds = ['godljapfbfdimjjiknaefidkghojnahp'];
+const extensionIds = (process.env.EXTENSION_IDS ?? '').split(',');
 
 function sendMessage(msg: string, data: any) {
   if (typeof chrome?.runtime?.sendMessage !== 'function') {
