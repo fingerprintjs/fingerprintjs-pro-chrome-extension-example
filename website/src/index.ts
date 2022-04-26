@@ -2,8 +2,11 @@ import * as FpJS from '@fingerprintjs/fingerprintjs-pro';
 
 const extensionIds = (process.env.EXTENSION_IDS ?? '').split(',');
 
+const isChromeApiAvailable = () =>
+  typeof chrome?.runtime?.sendMessage === 'function';
+
 function sendMessage(msg: string, data: any) {
-  if (typeof chrome?.runtime?.sendMessage !== 'function') {
+  if (!isChromeApiAvailable()) {
     console.warn('Looks like chrome API is not available.');
 
     return;
@@ -21,7 +24,7 @@ function sendMessage(msg: string, data: any) {
 async function main() {
   const heading = document.querySelector('.heading')!;
 
-  if (typeof chrome?.runtime?.sendMessage !== 'function') {
+  if (!isChromeApiAvailable()) {
     heading.textContent =
       'Looks like chrome API is not available, you might need to switch to chromium based browser.';
     heading.classList.add('error');
