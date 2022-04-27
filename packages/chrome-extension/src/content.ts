@@ -1,4 +1,4 @@
-import { renderFingerprintSection } from './render';
+import { renderFingerprintSection } from './fingerprint/render';
 
 const root = document.createElement('div');
 const shadowRoot = root.attachShadow({ mode: 'open' });

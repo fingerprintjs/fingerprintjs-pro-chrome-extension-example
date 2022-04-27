@@ -1,4 +1,4 @@
-import { renderFingerprintSection } from './render';
+import { renderFingerprintSection } from './fingerprint/render';
 
 const main = document.querySelector('main')!;
 

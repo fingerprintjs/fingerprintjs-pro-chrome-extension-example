@@ -5,26 +5,34 @@ const extensionIds = (process.env.EXTENSION_IDS ?? '').split(',');
 const isChromeApiAvailable = () =>
   typeof chrome?.runtime?.sendMessage === 'function';
 
+const isIframe = () => window.parent !== window;
+
 function sendMessage(msg: string, data: any) {
-  if (!isChromeApiAvailable()) {
-    console.warn('Looks like chrome API is not available.');
+  const message = {
+    msg,
+    data,
+    external: true,
+  };
 
-    return;
+  if (isIframe()) {
+    window.parent.postMessage(message, '*');
+  } else {
+    if (!isChromeApiAvailable()) {
+      console.warn('Looks like chrome API is not available.');
+
+      return;
+    }
+
+    extensionIds.forEach(extensionId =>
+      chrome.runtime.sendMessage(extensionId, message)
+    );
   }
-
-  extensionIds.forEach(extensionId =>
-    chrome.runtime.sendMessage(extensionId, {
-      msg,
-      data,
-      external: true,
-    })
-  );
 }
 
 async function main() {
   const heading = document.querySelector('.heading')!;
 
-  if (!isChromeApiAvailable()) {
+  if (!isChromeApiAvailable() && !isIframe()) {
     heading.textContent =
       'Looks like chrome API is not available, you might need to switch to chromium based browser.';
     heading.classList.add('error');
