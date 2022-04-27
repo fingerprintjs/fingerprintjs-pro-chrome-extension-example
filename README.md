@@ -1,6 +1,6 @@
 # FingerprintJS Pro Browser Extension Example
 
-This repository contains example browser extension that uses that FingerprintJS Pro Agent.
+This repository contains example browser extension that uses the FingerprintJS Pro Agent.
 
 ### Why it exists
 
