@@ -65,7 +65,7 @@ module.exports = (env, { mode }) => {
     plugins: [
       new webpack.ProgressPlugin(),
 
-      // We must add electron as dev dependency so that forge will recognize it as root
+      // Apply website url to manifest in dev build
       {
         apply: compiler => {
           compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
