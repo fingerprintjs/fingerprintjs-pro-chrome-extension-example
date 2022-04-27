@@ -33,7 +33,7 @@ When extension needs to obtain data from our Pro Agent, it creates new window wi
 After cloning the repository perform these operations:
 
 * Run `yarn install` to install dependencies
-* Copy `.env.dist` to `.env` and provide your FingerprintJS Public `API_KEY` 
+* Copy `.env.dist` to `.env` and provide your FingerprintJS Public `API_KEY`
   * If you want to develop the extension locally, you also need to set `WEBSITE_URL=https://localhost:8080/`
   * You will also need to set the `EXTENSION_IDS`, we will get back to it later.
 * Run `yarn run extension:watch` to build the extension on changes
