@@ -54,18 +54,19 @@ export function renderFingerprintSection(target: Element) {
       animation: scan 2s linear infinite;
   }
   
-  .result-container {
-      margin-top: 1rem;
+  .result {
+      margin-bottom: 1rem;
   }
 
 </style>
     <div class='fingerprint-container'>
-      <button title='Get your fingerprint' class='get-fingerprint'>
-        <img src='${logo}' alt=''>
-      </button>
       <div class='result-container'>
-        Your visitorId:
-        <span class='result'></span>
+        <div class='result'>
+          Click below to get your visitorId:
+        </div>
+        <button title='Get your fingerprint' class='get-fingerprint'>
+          <img src='${logo}' alt=''>
+      </button>
     </div>
   </div>
   `;
@@ -96,7 +97,7 @@ function setupFingerprintingProcess(container: Element) {
           triggerBtn.disabled = false;
           triggerBtn.classList.remove('loading');
 
-          target.innerHTML = `<b>${message.data.visitorId}</b>`;
+          target.innerHTML = `Your visitorId: <b>${message.data.visitorId}</b>`;
         }
       }
     );

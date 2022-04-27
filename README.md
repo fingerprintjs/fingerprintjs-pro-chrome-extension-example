@@ -38,7 +38,7 @@ After cloning the repository perform these operations:
   * You will also need to set the `EXTENSION_IDS`, we will get back to it later.
 * Run `yarn extension:watch` to build the extension on changes
 * Install the unpacked extension in your browser. In order to do that:
-  * Head to **Manage Extensions** page in your browser
+  * Head to `chrome://extensions/` page in your browser
   * Click **Load unpacked**
   * Select `packages/chrome-extension/build` directory
   * You should see the **FingerprintJS Example Browser Extension** extension, make sure that it is activated.
