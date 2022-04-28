@@ -74,11 +74,9 @@ module.exports = (env, { mode }) => {
             const manifestPath = path.join(outPath, 'manifest.json');
             const manifest = require(manifestPath);
 
-            if (mode === 'development') {
-              manifest.externally_connectable.matches = [
-                `${process.env.WEBSITE_URL}*`,
-              ];
-            }
+            manifest.externally_connectable.matches = [
+              `${process.env.WEBSITE_URL}*`,
+            ];
 
             fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
           });
