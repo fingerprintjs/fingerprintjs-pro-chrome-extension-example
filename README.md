@@ -12,7 +12,7 @@ The solution is split into two parts - **chrome-extension** and **website**.
 
 #### Website
 
-Website uses the Pro Agent as it normally would, and communicates with Chrome extension using [native communication channel](https://developer.chrome.com/docs/extensions/mv3/messaging/#external-webpage).
+Website uses the Pro Agent as it normally would, and communicates with Chrome extension.
 
 #### Chrome Extension
 
@@ -28,7 +28,7 @@ When extension needs to obtain data from the Pro Agent, it creates a new window 
 
 1. We send message to background script `{"type": "get-fingerprint"}`.
 2. Background creates a new window that points to the **website** url.
-3. **website** uses the Pro Agent to obtain data, and passes it back to chrome extension via `chrome.runtime.sendMessage`.
+3. **website** uses the Pro Agent to obtain data, and passes it back to Chrome extension via [native communication channel](https://developer.chrome.com/docs/extensions/mv3/messaging/#external-webpage).
 4. Background scripts waits for the message, and then passes it back to the sender.
 5. Created window is closed.
 
