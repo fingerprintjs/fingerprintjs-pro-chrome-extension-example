@@ -4,7 +4,7 @@
   "private": true,
   "description": "Stores e2e tests for chrome extension;",
   "scripts": {
-    "e2e": "jest --forceExit"
+    "e2e": "jest --forceExit --runInBand"
   },
   "devDependencies": {
     "@types/jest": "^27.5.0",

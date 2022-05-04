@@ -4,8 +4,15 @@ import { Page } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
+const options = {
+  state: 'attached' as const,
+};
+
 async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
-  const input = await page.waitForSelector(`input[value="${strategy}"]`);
+  const input = await page.waitForSelector(
+    `input[value="${strategy}"]`,
+    options
+  );
 
   await input.click();
 }
