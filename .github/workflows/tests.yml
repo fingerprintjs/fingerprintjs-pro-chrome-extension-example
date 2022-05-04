@@ -47,12 +47,12 @@ jobs:
         run: yarn install && npx playwright install-deps
 
       - name: Create .env file
-        run: cp .env.dist .env
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "WEBSITE_URL=https://localhost:8080/" >> .env
 
       - name: Build extension
         run: yarn extension:build
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
 
       - name: Run tests
         uses: GabrielBB/xvfb-action@v1
