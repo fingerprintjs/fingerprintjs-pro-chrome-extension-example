@@ -7,7 +7,7 @@
     "extension:build": "cd packages/chrome-extension && yarn run build",
     "extension:zip": "cd packages/chrome-extension && yarn run zip",
     "extension:watch": "cd packages/chrome-extension && yarn run watch",
-    "extension:e2e": "cd packages/chrome-extension && yarn run e2e",
+    "extension:e2e": "cd packages/chrome-extension-e2e && yarn run e2e",
     "website:build": "cd packages/website && yarn run build",
     "website:start": "cd packages/website && yarn run start",
     "build": "yarn website:build && yarn extension:build",
