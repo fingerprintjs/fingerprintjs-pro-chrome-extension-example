@@ -1,0 +1,17 @@
+{
+  "name": "chrome-extension-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Stores e2e tests for chrome extension;",
+  "scripts": {
+    "e2e": "jest --forceExit"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.0",
+    "@types/node-fetch": "^2.6.1",
+    "playwright": "^1.21.1",
+    "node-fetch": "^2.6.7",
+    "jest": "^28.0.3",
+    "ts-jest": "^28.0.1"
+  }
+}

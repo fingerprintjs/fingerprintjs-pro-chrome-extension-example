@@ -1,0 +1,64 @@
+name: ci
+on:
+  push:
+    branches-ignore:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: nodemodules-${{ hashFiles('yarn.lock') }}
+          restore-keys: nodemodules-
+
+      - name: Install Node packages
+        run: yarn install
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
+  chrome-extension-e2e:
+    name: Chrome extension e2e tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: nodemodules-${{ hashFiles('yarn.lock') }}
+          restore-keys: nodemodules-
+
+      - name: Install Node packages
+        run: yarn install
+
+      - name: Create .env file
+        run: cp .env.dist .env
+
+      - name: Build extension
+        run: yarn extension:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Run tests
+        run: yarn extension:e2e
