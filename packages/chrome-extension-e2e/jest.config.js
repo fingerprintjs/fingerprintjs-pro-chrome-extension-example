@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   preset: 'ts-jest',
   testRegex: 'tests/.+spec.tsx?$',
-  testTimeout: 90000,
+  testTimeout: 999999,
   setupFilesAfterEnv: [path.resolve(__dirname, 'tests/setup.ts')],
   globals: {
     'ts-jest': {
