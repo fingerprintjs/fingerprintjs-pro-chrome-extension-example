@@ -1,0 +1,30 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build website
+        run: yarn run website:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3dbd94cbc5a1c442946e40bdf119764e12b1439b
+        with:
+          branch: gh-pages
+          folder: packages/website/build
