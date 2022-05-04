@@ -1,0 +1,15 @@
+{
+  "name": "fingerprintjs-playground",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro": "^3.6.0"
+  }
+}

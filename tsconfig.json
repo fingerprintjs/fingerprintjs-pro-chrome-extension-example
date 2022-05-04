@@ -20,7 +20,7 @@
     "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "types": ["node"]
+    "types": ["node", "chrome"]
   },
   "exclude": [
     "node_modules",

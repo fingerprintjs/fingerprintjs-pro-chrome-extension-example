@@ -1,9 +1,13 @@
 {
   "name": "FingerprintJS Example Browser Extension",
+  "description": "This is a sample browser extension that demonstrates how to use the FingerprintJS library.",
   "version": "0.0.1",
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "assets/logo.png"
   },
   "content_scripts": [
     {
@@ -17,20 +21,16 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
+  "externally_connectable": {
+    "matches": ["https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/*"]
+  },
   "permissions": [
-    "unlimitedStorage",
-    "storage",
-    "tabs",
-    "activeTab",
-    "browsingData",
-    "background",
-    "scripting"
+    "background"
   ],
-  "host_permissions": ["*://*/*"],
   "web_accessible_resources": [
     {
-      "resources": ["*.js", "*.json", "*.map"],
-      "matches": ["*://*/*"]
+      "resources": ["assets/*"],
+      "matches": [ "*://*/*" ]
     }
   ]
 }
