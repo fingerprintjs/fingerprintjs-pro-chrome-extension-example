@@ -26,11 +26,15 @@ async function getAndCheckResult(page: Page) {
         const visitorIdElement = await result.waitForSelector('b', options);
         const visitorId = await visitorIdElement.textContent();
 
+        console.log({ visitorId });
+
         expect(visitorId).toBeTruthy();
         expect(visitorId).toHaveLength(20);
 
         return;
       }
+    } catch (error) {
+      console.error(error);
     } finally {
       await wait(1000);
     }
