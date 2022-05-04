@@ -43,13 +43,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: nodemodules-${{ hashFiles('yarn.lock') }}
-          restore-keys: nodemodules-
-
       - name: Install dependencies
         run: yarn install && npx playwright install-deps
 
