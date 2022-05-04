@@ -45,7 +45,6 @@ export async function createBrowser() {
   const ctx = await chromium.launchPersistentContext(fullContextPath, {
     permissions: [],
     args: [
-      '--enable-native-messaging',
       '--window-size=320x240',
       '--ignore-certificate-errors',
       `--disable-extensions-except=${extensionPath}`,
@@ -58,6 +57,7 @@ export async function createBrowser() {
       '--v=1',
     ],
     headless: false,
+    bypassCSP: true,
   });
 
   // Wait for extensions to load
