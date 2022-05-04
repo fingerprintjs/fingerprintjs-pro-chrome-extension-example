@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  generate-docs:
+  deploy-website:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -22,6 +22,7 @@ jobs:
         run: yarn run website:build
         env:
           API_KEY: ${{ secrets.API_KEY }}
+          EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3dbd94cbc5a1c442946e40bdf119764e12b1439b
