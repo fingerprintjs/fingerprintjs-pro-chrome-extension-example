@@ -31,7 +31,7 @@ export async function createBrowser() {
   const { currentTestName } = expect.getState();
   const contextsPath = path.resolve(__dirname, 'contexts');
 
-  if (browser || ctxPath) {
+  if (browser || ctxPath || websiteProcess) {
     await cleanup();
   }
 
