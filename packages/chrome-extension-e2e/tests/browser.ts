@@ -58,7 +58,6 @@ export async function createBrowser() {
       '--v=1',
     ],
     headless: false,
-    channel: 'chrome',
   });
 
   // Wait for extensions to load
