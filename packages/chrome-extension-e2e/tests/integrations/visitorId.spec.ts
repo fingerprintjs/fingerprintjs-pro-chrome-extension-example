@@ -13,22 +13,27 @@ async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
 async function getAndCheckResult(page: Page) {
   await page.click('.get-fingerprint');
 
-  const result = await page.waitForSelector('.result');
+  const options = {
+    state: 'attached' as const,
+  };
 
   while (true) {
-    const textContent = await result.textContent();
+    try {
+      const result = await page.waitForSelector('.result', options);
+      const textContent = await result.textContent();
 
-    if (textContent?.startsWith('Your visitorId')) {
-      const visitorIdElement = await result.waitForSelector('b');
-      const visitorId = await visitorIdElement.textContent();
+      if (textContent?.startsWith('Your visitorId')) {
+        const visitorIdElement = await result.waitForSelector('b', options);
+        const visitorId = await visitorIdElement.textContent();
 
-      expect(visitorId).toBeTruthy();
-      expect(visitorId).toHaveLength(20);
+        expect(visitorId).toBeTruthy();
+        expect(visitorId).toHaveLength(20);
 
-      return;
+        return;
+      }
+    } finally {
+      await wait(1000);
     }
-
-    await wait(1000);
   }
 }
 
