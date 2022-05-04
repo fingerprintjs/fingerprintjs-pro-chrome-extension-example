@@ -25,7 +25,7 @@ jobs:
           EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3dbd94cbc5a1c442946e40bdf119764e12b1439b
+        uses: JamesIves/github-pages-deploy-action@8817a56e5bfec6e2b08345c81f4d422db53a2cdc
         with:
           branch: gh-pages
           folder: packages/website/build
