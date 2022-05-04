@@ -12,7 +12,8 @@ The solution is split into two parts - **chrome-extension** and **website**.
 
 #### Website
 
-Website uses the Pro Agent as it normally would, and communicates with Chrome extension.
+Website uses the Pro Agent as it normally would, and communicates with Chrome extension. 
+It is hosted on [Github Pages](https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/).
 
 #### Chrome Extension
 
