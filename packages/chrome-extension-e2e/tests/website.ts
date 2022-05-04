@@ -30,12 +30,10 @@ export async function waitForWebsite() {
       });
 
       if (response.ok) {
-        console.log('Website is up');
-
         return true;
       }
     } catch (error) {
-      console.error('Website not ready yet', error);
+      // Nothing here
     }
 
     await wait(1000);

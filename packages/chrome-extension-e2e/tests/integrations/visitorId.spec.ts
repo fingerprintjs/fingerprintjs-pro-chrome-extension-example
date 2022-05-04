@@ -4,15 +4,8 @@ import { Page } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
-const options = {
-  state: 'attached' as const,
-};
-
 async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
-  const input = await page.waitForSelector(
-    `input[value="${strategy}"]`,
-    options
-  );
+  const input = await page.waitForSelector(`input[value="${strategy}"]`);
 
   await input.click();
 }
@@ -20,28 +13,20 @@ async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
 async function getAndCheckResult(page: Page) {
   await page.click('.get-fingerprint');
 
-  const options = {
-    state: 'attached' as const,
-  };
-
   while (true) {
     try {
-      const result = await page.waitForSelector('.result', options);
+      const result = await page.waitForSelector('.result');
       const textContent = await result.textContent();
 
       if (textContent?.startsWith('Your visitorId')) {
-        const visitorIdElement = await result.waitForSelector('b', options);
+        const visitorIdElement = await result.waitForSelector('b');
         const visitorId = await visitorIdElement.textContent();
-
-        console.log({ visitorId });
 
         expect(visitorId).toBeTruthy();
         expect(visitorId).toHaveLength(20);
 
         return;
       }
-    } catch (error) {
-      console.error(error);
     } finally {
       await wait(1000);
     }
