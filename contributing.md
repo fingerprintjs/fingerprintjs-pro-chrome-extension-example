@@ -40,4 +40,4 @@ yarn run extension:e2e
 ```
 
 ### How to deploy website
-- Website is automatically deployed to Github Pages on every push to `main` branch.
+Website is automatically deployed to Github Pages on every push to `main` branch.
