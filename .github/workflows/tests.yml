@@ -92,3 +92,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: "artifacts/**/*.xml"
+          check_name: 'Chrome Extension E2E Test Results'
