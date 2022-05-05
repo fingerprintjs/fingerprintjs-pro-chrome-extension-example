@@ -66,6 +66,14 @@ jobs:
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+        if: always() && matrix.os == 'ubuntu-latest'
         with:
           files: "packages/**/reports/*.xml"
+          name: Unit Test Results (OS ${{ matrix.os }})
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always() && matrix.os != 'ubuntu-latest'
+        with:
+          files: "packages/**/reports/*.xml"
+          name: Unit Test Results (OS ${{ matrix.os }})
