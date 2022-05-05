@@ -8,9 +8,10 @@ The main branch is locked for the push action. For proposing changes, use the st
 
 ### Packages
 
-This repository contains two packages:
+This repository contains three packages:
 
 * chrome-extension: Provides sample extension that consists of popup page, background and content script.
+* chrome-extension-e2e: E2E Tests for chrome extension that test it's functionality in real browser.
 * website: Example website that uses the Pro Agent as it normally would, and communicates with Chrome extension.
 
 ### How to build
