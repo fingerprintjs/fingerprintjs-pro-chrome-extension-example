@@ -63,3 +63,9 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with:
           run: yarn extension:e2e
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: "packages/**/reports/*.xml"

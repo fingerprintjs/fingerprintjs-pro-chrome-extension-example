@@ -12,6 +12,7 @@
     "playwright": "*",
     "node-fetch": "^2.6.7",
     "jest": "^28.0.3",
+    "jest-junit": "13.2.0",
     "ts-jest": "^28.0.1"
   }
 }
