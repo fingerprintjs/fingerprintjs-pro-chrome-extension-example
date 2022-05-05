@@ -34,6 +34,7 @@ jobs:
   chrome-extension-e2e:
     name: Chrome extension e2e tests
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -64,16 +65,30 @@ jobs:
         with:
           run: yarn extension:e2e
 
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && matrix.os == 'ubuntu-latest'
+      - name: Upload Unit Test Results
+        if: always()
+        uses: actions/upload-artifact@v2
         with:
-          files: "packages/**/reports/*.xml"
           name: Unit Test Results (OS ${{ matrix.os }})
+          path: packages/chrome-extension-e2e/reports/report.xml
+
+  publish-test-results:
+    name: Publish test results
+    needs: chrome-extension-e2e
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+      issues: read
+    if: always()
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
-        if: always() && matrix.os != 'ubuntu-latest'
+        uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: "packages/**/reports/*.xml"
-          name: Unit Test Results (OS ${{ matrix.os }})
+          files: "artifacts/**/*.xml"
