@@ -3891,9 +3891,9 @@ playwright-core@1.21.1:
     yauzl "2.10.0"
     yazl "2.5.1"
 
-playwright@^1.21.1:
+playwright@*:
   version "1.21.1"
-  resolved "https://registry.npmjs.org/playwright/-/playwright-1.21.1.tgz"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.21.1.tgz#62bdefc0e8baba192d93d8daf0c0eb9213869d76"
   integrity sha512-Of0h1XAvsqK1XfHVZ8sL2PjJVoQUu9gTmmMTtLS7MEyWMRD0kn8myeI90xj1ncJhUysQxGboH64S5v+lL2USrg==
   dependencies:
     playwright-core "1.21.1"
