@@ -10,8 +10,8 @@ The main branch is locked for the push action. For proposing changes, use the st
 
 This repository contains three packages:
 
-* chrome-extension: Provides sample extension that consists of popup page, background and content script.
-* chrome-extension-e2e: E2E Tests for chrome extension that test it's functionality in real browser.
+* chrome-extension: Provides sample extension that consists of popup page, background, and content script.
+* chrome-extension-e2e: E2E Tests for a chrome extension that tests its functionality in a real browser.
 * website: Example website that uses the Pro Agent as it normally would, and communicates with Chrome extension.
 
 ### How to build
@@ -19,7 +19,7 @@ Just run:
 ```shell
 yarn build
 ```
-It will build website and chrome extension.
+It will build a website and chrome extension.
 
 ### Code style
 
@@ -40,5 +40,5 @@ To start them run:
 yarn run extension:e2e
 ```
 
-### How to deploy website
-Website is automatically deployed to Github Pages on every push to `main` branch.
+### How to deploy the website
+The website is automatically deployed to Github Pages on every push to the `main` branch.
