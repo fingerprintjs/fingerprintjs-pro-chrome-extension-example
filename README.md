@@ -1,6 +1,7 @@
 # FingerprintJS Pro Chrome Extension Example
 
 This repository contains example Chrome extension that uses the FingerprintJS Pro Agent.
+You can install the example chrome extension from [Chrome Web Store](https://chrome.google.com/webstore/detail/fingerprintjs-example-bro/knppbjgkegnlbhddedbilnfmnkdocekn).
 
 ### Why it exists
 
