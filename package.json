@@ -4,6 +4,8 @@
   "private": true,
   "description": "Playground for browser extension integration",
   "scripts": {
+    "prepare": "husky install",
+    "cm": "cz",
     "extension:build": "yarn workspace chrome-extension build",
     "extension:zip": "yarn workspace chrome-extension zip",
     "extension:watch": "yarn workspace chrome-extension watch",
@@ -23,13 +25,17 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/chrome": "0.0.181",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "clean-webpack-plugin": "^4.0.0",
+    "commitizen": "^4.2.4",
     "copy-webpack-plugin": "^10.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
@@ -37,6 +43,8 @@
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.5.1",
     "semantic-release": "^19.0.2",
     "semantic-release-monorepo": "^7.0.5",
@@ -49,5 +57,13 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.6.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "yarn run lint:fix"
   }
 }

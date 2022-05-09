@@ -40,5 +40,8 @@ To start them run:
 yarn run extension:e2e
 ```
 
+### Commiting changes
+We follow [Conventional Commits](https://conventionalcommits.org/) for committing changes. We use git hooks to check that the commit message is correct.
+
 ### How to deploy the website
-The website is automatically deployed to Github Pages on every push to the `main` branch.
+The website is automatically deployed to Github Pages on every release.
