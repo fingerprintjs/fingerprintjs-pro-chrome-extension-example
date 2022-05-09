@@ -2,13 +2,13 @@ name: Deploy website
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  create:
 
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
+    # Ensure that for "create" event we trigger this workflow only for the correct tag
+    if: ${{ github.event_name != 'create' || contains(github.ref, 'website-v') }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2

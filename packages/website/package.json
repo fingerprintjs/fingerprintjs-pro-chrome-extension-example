@@ -1,15 +1,24 @@
 {
-  "name": "fingerprintjs-playground",
+  "name": "fingerprintjs-extension-website",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "release": "semantic-release",
+    "release-dry": "semantic-release --dry-run"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.6.0"
+  },
+  "release": {
+    "extends": "semantic-release-monorepo",
+    "tagFormat": "website-v${version}",
+    "branches": [
+      "main"
+    ]
   }
 }
