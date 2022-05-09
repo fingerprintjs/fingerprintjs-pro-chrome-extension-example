@@ -1,0 +1,35 @@
+name: Publish extension
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+jobs:
+  publish-extension:
+    runs-on: ubuntu-latest
+    # Ensure that for release event we trigger this workflow only for the correct tag
+    if: ${{ github.event_name != 'release' || contains(github.ref, 'browser-extension-v') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Create .env file
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
+
+      - name: Build extension
+        run: yarn extension:zip
+
+      - name: Upload extension
+        uses: mnao305/chrome-extension-upload@4061bc03cde1feaec8b153654495c88857fb76c3
+        with:
+          file-path: packages/chrome-extension/build.zip
+          extension-id: ${{ secrets.EXTENSION_ID }}
+          client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+          refresh-token: ${{ secrets.GOOGLE_REFRESH_TOKEN }}

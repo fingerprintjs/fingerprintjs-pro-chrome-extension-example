@@ -44,4 +44,8 @@ yarn run extension:e2e
 We follow [Conventional Commits](https://conventionalcommits.org/) for committing changes. We use git hooks to check that the commit message is correct.
 
 ### How to deploy the website
-The website is automatically deployed to Github Pages on every release.
+The website is automatically deployed to Github Pages on every release with tag website-v${VERSION}.
+
+### How to publish chrome extension
+
+Chrome extension is published to Chrome Web Store on every release with tag browser-extension-v${VERSION}.
