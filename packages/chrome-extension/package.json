@@ -5,16 +5,35 @@
   "description": "Sample chrome extension that uses FingerprintJS pro agent.",
   "scripts": {
     "build": "webpack -c webpack.config.js --mode production",
-    "zip": "npm run build && cd build && zip -r ../build.zip *",
+    "zip": "yarn run build && cd build && zip -r ../build.zip *",
     "watch": "webpack -c webpack.config.js --watch --mode development",
     "release": "semantic-release",
-    "release-dry": "semantic-release --dry-run"
+    "release-dry": "semantic-release --dry-run",
+    "sync-manifest-version": "node ./scripts/syncManifestVersion.js"
   },
   "release": {
     "extends": "semantic-release-monorepo",
     "tagFormat": "chrome-extension-v${version}",
     "branches": [
       "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      "@semantic-release/github",
+      ["@semantic-release/exec", {
+        "publishCmd": "yarn run sync-manifest-version"
+      }]
     ]
   }
 }
