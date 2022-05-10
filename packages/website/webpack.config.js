@@ -55,7 +55,7 @@ module.exports = (env, { mode = 'development' }) => ({
       title: `FingerprintJS ${mode === 'development' ? 'Playground' : 'Demo'}`,
     }),
 
-    new webpack.definePlugin({
+    new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT),
     }),
 
