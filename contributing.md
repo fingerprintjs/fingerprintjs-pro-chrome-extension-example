@@ -48,4 +48,4 @@ The website is automatically deployed to Github Pages on every release with tag 
 
 ### How to publish chrome extension
 
-Chrome extension is published to Chrome Web Store on every release with tag browser-extension-v${VERSION}.
+Chrome extension is published to Chrome Web Store on every release with tag chrome-extension-v${VERSION}.
