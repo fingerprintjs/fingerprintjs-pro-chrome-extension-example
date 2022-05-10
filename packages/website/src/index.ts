@@ -42,6 +42,7 @@ async function main() {
 
   const fp = await FpJS.load({
     apiKey: process.env.API_KEY as string,
+    endpoint: process.env.API_ENDPOINT,
   });
 
   const result = await fp.get({
