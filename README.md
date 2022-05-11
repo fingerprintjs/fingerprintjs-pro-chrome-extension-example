@@ -46,9 +46,9 @@ This repository contains two strategies that make our Pro Agent work in the Chro
 When the extension needs to obtain data from the Pro Agent, it creates a new window (via `chrome.windows.create`) with the URL of the **website** and waits for a message from it.
 
 1. We send message to background script `{"type": "get-visitor-id"}`.
-2. Background creates a new window that points to the **website** URL. The window is visible, but it's created as not focused, in order to don't cause the extension popup to close, if it was used there.
-3. **website** uses the Pro Agent to obtain data and passes it back to the Chrome extension via [native communication channel](https://developer.chrome.com/docs/extensions/mv3/messaging/#external-webpage).
-4. Background scripts wait for the message and then pass it back to the sender.
+2. The background script creates a new window that points to the **website** URL. The window is visible but without focus.
+3. The **website** uses the Pro Agent to obtain data and passes it back to the Chrome extension via [native communication channel](https://developer.chrome.com/docs/extensions/mv3/messaging/#external-webpage).
+4. The background scripts wait for the message and then pass it back to the sender.
 5. Created window is closed.
 
 > To debug the created window, you can comment out the `await chrome.windows.remove(currentWindow.id);` in `closeCurrentWindow` function in `packages/chrome-extension/src/background.ts`.
@@ -57,14 +57,14 @@ This strategy can be found in `packages/chrome-extension/src/fingerprint/strateg
 
 #### Iframe
 
-1. We append the iframe to the DOM of a currently open page in the browser with the URL of the **website**. It can be used in the extension popup as well.
-2. **website** uses the Pro Agent to obtain data, and passes it back to the parent window via `window.parent.postMessage`.
-3. **chrome-extension** awaits the message.
+1. We append an iframe to the DOM of a currently open page in the browser with the URL of the **website**. It can be used in the extension popup as well.
+2. The **website** uses the Pro Agent to obtain data, and passes it back to the parent window via `window.parent.postMessage`.
+3. The **chrome-extension** awaits the message.
 
 This strategy can be found in `packages/chrome-extension/src/fingerprint/strategies/iframe.strategy.ts`.
 
 ---
-**Note:** Implementation of both of these strategies is not perfect, ideally they should also handle time-out scenarios and connection issues with the website, but it was decided to leave it out to keep it simple.
+**Note:** Implementation of both of these strategies is not perfect, ideally they should also handle time-out scenarios and connection issues with the website. It was decided to leave it out to keep it simple.
 
 
 ### Development
