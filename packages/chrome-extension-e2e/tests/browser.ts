@@ -85,6 +85,13 @@ export async function createBrowser() {
 
   await waitForWebsite();
 
+  const pages = browser.pages();
+  const serviceWorkers = browser.serviceWorkers();
+
+  const urls = [...pages, ...serviceWorkers].map(item => item.url());
+
+  console.log(`Created browser with urls: ${urls.join(', ')}`);
+
   for (const extension of thirdPartyExtensions) {
     await extension.install?.(browser, extensionId);
   }
