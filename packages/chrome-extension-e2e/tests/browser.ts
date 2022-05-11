@@ -1,4 +1,4 @@
-import { BrowserContext, chromium, Page } from 'playwright';
+import { BrowserContext, chromium } from 'playwright';
 import * as path from 'path';
 import * as fs from 'fs';
 import { getExtensionPath } from './paths';
@@ -84,16 +84,6 @@ export async function createBrowser() {
   websiteProcess = await startWebsite(extensionId);
 
   await waitForWebsite();
-
-  const pages = browser.pages();
-  const serviceWorkers = browser.serviceWorkers();
-
-  const urls = [...pages, ...serviceWorkers].map(item => ({
-    url: item.url(),
-    title: 'title' in item ? (item as Page).title() : 'Background script',
-  }));
-
-  console.log(`Created browser with urls: ${urls.join(', ')}`);
 
   for (const extension of thirdPartyExtensions) {
     await extension.install?.(browser, extensionId);
