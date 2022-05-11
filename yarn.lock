@@ -1158,38 +1158,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@szmarczak/http-timer@^4.0.5":
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-4.0.6.tgz#b4a914bb62e7c272d4e5989fe4440f812ab1d807"
-  integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
-  dependencies:
-    defer-to-connect "^2.0.0"
-
-"@tootallnate/once@2":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
-  integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
-
-"@tsconfig/node10@^1.0.7":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.8.tgz#c1e4e80d6f964fbecb3359c43bd48b40f7cadad9"
-  integrity sha512-6XFfSQmMgq0CFLY1MslA/CPUfhIL919M1rMsa5lP2P097N2Wd1sSX0tx1u4olM16fLNhtHZpRhedZJphNJqmZg==
-
-"@tsconfig/node12@^1.0.7":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node12/-/node12-1.0.9.tgz#62c1f6dee2ebd9aead80dc3afa56810e58e1a04c"
-  integrity sha512-/yBMcem+fbvhSREH+s14YJi18sp7J9jpuhYByADT2rypfajMZZN4WQ6zBGgBKp53NKmqI36wFYDb3yaMPurITw==
-
-"@tsconfig/node14@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node14/-/node14-1.0.1.tgz#95f2d167ffb9b8d2068b0b235302fafd4df711f2"
-  integrity sha512-509r2+yARFfHHE7T6Puu2jjkoycftovhXRqW328PDXTVGKihlb1P8Z9mMZH04ebyajfRY7dedfGynlrFHJUQCg==
-
-"@tsconfig/node16@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.2.tgz#423c77877d0569db20e1fc80885ac4118314010e"
-  integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
-
 "@types/babel__core@^7.1.14":
   version "7.1.19"
   resolved "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.1.19.tgz"
@@ -1805,6 +1773,11 @@ acorn@^8.7.0:
   version "8.7.1"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.7.1.tgz"
   integrity sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==
+
+adm-zip@^0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.9.tgz#b33691028333821c0cf95c31374c5462f2905a83"
+  integrity sha512-s+3fXLkeeLjZ2kLjCBwQufpI5fuN+kIGBxu6530nVQZGVol0d7Y/M88/xw9HGGUcJjKf8LutN3VPRUBq6N7Ajg==
 
 agent-base@6, agent-base@^6.0.2:
   version "6.0.2"
@@ -4890,7 +4863,7 @@ jest-haste-map@^28.0.2:
 
 jest-junit@13.2.0:
   version "13.2.0"
-  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-13.2.0.tgz#66eeb86429aafac8c1745a70f44ace185aacb943"
+  resolved "https://registry.npmjs.org/jest-junit/-/jest-junit-13.2.0.tgz"
   integrity sha512-B0XNlotl1rdsvFZkFfoa19mc634+rrd8E4Sskb92Bb8MmSXeWV9XJGUyctunZS1W410uAxcyYuPUGVnbcOH8cg==
   dependencies:
     mkdirp "^1.0.4"
@@ -5861,7 +5834,7 @@ mkdirp@^0.5.5:
 
 mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
+  resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
 modify-values@^1.0.0:
@@ -6650,7 +6623,7 @@ playwright-core@1.21.1:
 
 playwright@*:
   version "1.21.1"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.21.1.tgz#62bdefc0e8baba192d93d8daf0c0eb9213869d76"
+  resolved "https://registry.npmjs.org/playwright/-/playwright-1.21.1.tgz"
   integrity sha512-Of0h1XAvsqK1XfHVZ8sL2PjJVoQUu9gTmmMTtLS7MEyWMRD0kn8myeI90xj1ncJhUysQxGboH64S5v+lL2USrg==
   dependencies:
     playwright-core "1.21.1"
@@ -8446,7 +8419,7 @@ ws@^8.4.2:
 
 xml@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
+  resolved "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
   integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
 
 xtend@~4.0.1:

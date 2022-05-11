@@ -6,6 +6,8 @@ import { wait } from './wait';
 import type { ChildProcess } from 'child_process';
 import { getExtensionId } from './url';
 import { startWebsite, waitForWebsite } from './website';
+import { downloadExtension } from './extensions';
+import { thirdPartyExtensions } from './extensionsList';
 
 let browser: BrowserContext;
 let ctxPath: string;
@@ -42,19 +44,31 @@ export async function createBrowser() {
   const contextId = currentTestName.concat(browserId);
   const fullContextPath = path.join(contextsPath, contextId, '.ctx');
 
+  const thirdPartyExtensionPaths = await Promise.all(
+    thirdPartyExtensions.map(extension => downloadExtension(extension.id))
+  );
+
+  const extensionsToLoad = [...thirdPartyExtensionPaths, extensionPath].join(
+    ','
+  );
+
+  const extensionArgs = [
+    `--disable-extensions-except=${extensionsToLoad}`,
+    `--load-extension=${extensionsToLoad}`,
+  ];
+
   const ctx = await chromium.launchPersistentContext(fullContextPath, {
     permissions: [],
     args: [
       '--window-size=320x240',
       '--ignore-certificate-errors',
-      `--disable-extensions-except=${extensionPath}`,
-      `--load-extension=${extensionPath}`,
       '--no-sandbox',
       // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
       '--noerrdialogs',
       // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
       '--enable-logging',
       '--v=1',
+      ...extensionArgs,
     ],
     headless: false,
     bypassCSP: true,
@@ -70,6 +84,10 @@ export async function createBrowser() {
   websiteProcess = await startWebsite(extensionId);
 
   await waitForWebsite();
+
+  for (const extension of thirdPartyExtensions) {
+    await extension.install?.(browser, extensionId);
+  }
 
   return ctx;
 }

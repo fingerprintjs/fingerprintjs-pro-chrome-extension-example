@@ -39,6 +39,7 @@ To start them run:
 ```shell
 yarn run extension:e2e
 ```
+> The e2e tests also install third party extensions ([uBlock](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en), [Ghostery](https://chrome.google.com/webstore/detail/ghostery-%E2%80%93-privacy-ad-blo/mlomiejdfkolichcflejclcbmpeaniij?hl=en)) to ensure that they don't impact how our extension works.
 
 ### Commiting changes
 We follow [Conventional Commits](https://conventionalcommits.org/) for committing changes. We use git hooks to check that the commit message is correct.
