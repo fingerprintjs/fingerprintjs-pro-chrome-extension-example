@@ -1,4 +1,4 @@
-import { createBrowser, getBrowser } from '../browser';
+import { getBrowser } from '../browser';
 import { navigateToPopup } from '../navigation';
 import { Page } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
@@ -48,7 +48,7 @@ describe('visitorId', () => {
 
   describe('New window strategy', () => {
     it('should show visitorId', async () => {
-      const browser = await createBrowser();
+      const browser = await getBrowser();
       const page = await browser.newPage();
 
       await navigateToPopup(page);
