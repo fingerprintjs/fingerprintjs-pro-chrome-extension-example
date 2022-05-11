@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "description": "Sample chrome extension that uses FingerprintJS pro agent.",
   "scripts": {

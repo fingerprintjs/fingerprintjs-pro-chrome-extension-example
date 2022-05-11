@@ -1,7 +1,7 @@
 {
   "name": "FingerprintJS Example Browser Extension",
   "description": "This is a sample browser extension that demonstrates how to use the FingerprintJS library.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html"
