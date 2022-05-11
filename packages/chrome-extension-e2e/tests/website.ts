@@ -21,6 +21,8 @@ export async function waitForWebsite() {
     rejectUnauthorized: false,
   });
 
+  await wait(1500);
+
   while (true) {
     try {
       const websiteUrl = process.env.WEBSITE_URL as string;

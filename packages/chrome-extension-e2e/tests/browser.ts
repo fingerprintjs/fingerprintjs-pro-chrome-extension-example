@@ -1,4 +1,4 @@
-import { BrowserContext, chromium } from 'playwright';
+import { BrowserContext, chromium, Page } from 'playwright';
 import * as path from 'path';
 import * as fs from 'fs';
 import { getExtensionPath } from './paths';
@@ -88,7 +88,10 @@ export async function createBrowser() {
   const pages = browser.pages();
   const serviceWorkers = browser.serviceWorkers();
 
-  const urls = [...pages, ...serviceWorkers].map(item => item.url());
+  const urls = [...pages, ...serviceWorkers].map(item => ({
+    url: item.url(),
+    title: 'title' in item ? (item as Page).title() : 'Background script',
+  }));
 
   console.log(`Created browser with urls: ${urls.join(', ')}`);
 
