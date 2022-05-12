@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "private": true,
   "description": "Sample chrome extension that uses FingerprintJS pro agent.",
   "scripts": {
@@ -32,9 +32,12 @@
         }
       ],
       "@semantic-release/github",
-      ["@semantic-release/exec", {
-        "publishCmd": "yarn run sync-manifest-version"
-      }]
+      [
+        "@semantic-release/exec",
+        {
+          "publishCmd": "yarn run sync-manifest-version"
+        }
+      ]
     ]
   }
 }
