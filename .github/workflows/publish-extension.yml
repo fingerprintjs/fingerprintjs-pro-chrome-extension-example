@@ -10,7 +10,7 @@ jobs:
   publish-extension:
     runs-on: ubuntu-latest
     # Ensure that for release event we trigger this workflow only for the correct tag
-    if: ${{ github.event_name != 'release' || contains(github.ref, 'browser-extension-v') }}
+    if: ${{ github.event_name != 'release' || contains(github.ref, 'chrome-extension-v') }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
