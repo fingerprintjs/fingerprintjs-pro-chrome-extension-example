@@ -24,7 +24,7 @@
       [
         "@semantic-release/exec",
         {
-          "publishCmd": "yarn run sync-manifest-version"
+          "prepareCmd": "yarn run sync-manifest-version"
         }
       ],
       [
