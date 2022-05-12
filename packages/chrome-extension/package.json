@@ -22,6 +22,12 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
       [
+        "@semantic-release/exec",
+        {
+          "publishCmd": "yarn run sync-manifest-version"
+        }
+      ],
+      [
         "@semantic-release/git",
         {
           "assets": [
@@ -31,13 +37,7 @@
           ]
         }
       ],
-      "@semantic-release/github",
-      [
-        "@semantic-release/exec",
-        {
-          "publishCmd": "yarn run sync-manifest-version"
-        }
-      ]
+      "@semantic-release/github"
     ]
   }
 }
