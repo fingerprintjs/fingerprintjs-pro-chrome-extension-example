@@ -4,12 +4,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
 const fs = require('fs');
+const packageJson = require('./package.json');
 
 const outDir = path.resolve(__dirname, 'build');
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 });
+
+function parseVersion(version) {
+  const safeVersion = version.split('-')[0];
+
+  return {
+    version: safeVersion,
+    versionName: version,
+  };
+}
 
 module.exports = (env, { mode }) => {
   return {
@@ -60,7 +70,7 @@ module.exports = (env, { mode }) => {
     plugins: [
       new webpack.ProgressPlugin(),
 
-      // Apply website url to manifest in dev build
+      // Apply website url and correct version to manifest
       {
         apply: compiler => {
           compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
@@ -72,6 +82,11 @@ module.exports = (env, { mode }) => {
             manifest.externally_connectable.matches = [
               `${process.env.WEBSITE_URL}*`,
             ];
+
+            const { version, versionName } = parseVersion(packageJson.version);
+
+            manifest.version = version;
+            manifest.version_name = versionName;
 
             fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
           });
