@@ -11,8 +11,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ],
   "background": {
@@ -22,15 +26,22 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "externally_connectable": {
-    "matches": ["https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/*"]
+    "matches": [
+      "https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/*"
+    ]
   },
   "permissions": [
     "background"
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/*"],
-      "matches": [ "*://*/*" ]
+      "resources": [
+        "assets/*"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
     }
-  ]
+  ],
+  "version_name": "0.0.2"
 }

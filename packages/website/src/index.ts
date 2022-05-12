@@ -1,4 +1,7 @@
 import * as FpJS from '@fingerprintjs/fingerprintjs-pro';
+import { showVersion } from './version';
+
+showVersion(document.querySelector('.version')!);
 
 const extensionIds = (process.env.EXTENSION_IDS ?? '').split(',');
 

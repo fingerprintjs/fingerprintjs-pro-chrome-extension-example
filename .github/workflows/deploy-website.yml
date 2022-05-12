@@ -2,13 +2,15 @@ name: Deploy website
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
+    # Ensure that for release event we trigger this workflow only for the correct tag
+    if: ${{ github.event_name != 'release' || contains(github.ref, 'website-v') }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
