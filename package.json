@@ -11,6 +11,7 @@
     "extension:watch": "yarn workspace chrome-extension watch",
     "extension:e2e": "yarn workspace chrome-extension-e2e run e2e",
     "extension:release": "yarn workspace chrome-extension release",
+    "extension:publish": "yarn workspace chrome-extension publish-to-store",
     "website:build": "yarn workspace website build",
     "website:start": "yarn workspace website start",
     "website:release": "yarn workspace website release",
