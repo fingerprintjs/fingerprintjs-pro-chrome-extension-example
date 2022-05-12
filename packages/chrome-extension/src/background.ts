@@ -42,7 +42,7 @@ async function getFingerprint() {
 
 chrome.runtime.onMessage.addListener(
   (message: Message, sender, sendResponse) => {
-    if (message.type === 'get-fingerprint') {
+    if (message.type === 'get-visitor-id') {
       getFingerprint().then(sendResponse);
 
       return true;

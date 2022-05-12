@@ -1,5 +1,5 @@
 export interface Message {
-  type: 'get-fingerprint';
+  type: 'get-visitor-id';
 }
 
 export enum FingerprintStrategy {

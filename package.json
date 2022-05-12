@@ -4,11 +4,20 @@
   "private": true,
   "description": "Playground for browser extension integration",
   "scripts": {
-    "extension:build": "cd packages/chrome-extension && yarn run build",
-    "extension:zip": "cd packages/chrome-extension && yarn run zip",
-    "extension:watch": "cd packages/chrome-extension && yarn run watch",
-    "website:build": "cd packages/website && yarn run build",
-    "website:start": "cd packages/website && yarn run start"
+    "prepare": "husky install",
+    "cm": "cz",
+    "extension:build": "yarn workspace chrome-extension build",
+    "extension:zip": "yarn workspace chrome-extension zip",
+    "extension:watch": "yarn workspace chrome-extension watch",
+    "extension:e2e": "yarn workspace chrome-extension-e2e run e2e",
+    "extension:release": "yarn workspace chrome-extension release",
+    "website:build": "yarn workspace website build",
+    "website:start": "yarn workspace website start",
+    "website:release": "yarn workspace website release",
+    "build": "yarn website:build && yarn extension:build",
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore --max-warnings 0 .",
+    "lint:fix": "yarn lint --fix",
+    "release": "yarn website:release && yarn extension:release"
   },
   "workspaces": [
     "packages/**"
@@ -16,13 +25,29 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/chrome": "0.0.181",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
     "clean-webpack-plugin": "^4.0.0",
+    "commitizen": "^4.2.4",
     "copy-webpack-plugin": "^10.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.5.1",
+    "semantic-release": "^19.0.2",
+    "semantic-release-monorepo": "^7.0.5",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.2.8",
     "typescript": "4.6.3",
@@ -32,5 +57,13 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.6.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "yarn run lint:fix"
   }
 }

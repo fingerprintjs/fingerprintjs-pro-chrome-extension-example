@@ -46,11 +46,6 @@ module.exports = (env, { mode }) => {
           test: /\.tsx?$/i,
           loader: 'ts-loader',
           exclude: /node_modules/,
-          options: {
-            compilerOptions: {
-              sourceMap: true,
-            },
-          },
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
