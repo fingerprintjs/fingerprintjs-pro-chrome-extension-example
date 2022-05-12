@@ -12,7 +12,7 @@ export function newWindowStrategy() {
   return new Promise<string>((resolve, reject) => {
     chrome.runtime.sendMessage(
       {
-        type: 'get-fingerprint',
+        type: 'get-visitor-id',
       } as Message,
 
       message => {

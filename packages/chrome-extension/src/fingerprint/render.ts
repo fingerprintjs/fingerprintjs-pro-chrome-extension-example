@@ -100,9 +100,8 @@ function setupListeners(container: Element) {
     strategy: FingerprintStrategy.NewWindow,
   };
 
-  const getFingerprintBtn = container.querySelector<HTMLButtonElement>(
-    '.get-fingerprint'
-  )!;
+  const getFingerprintBtn =
+    container.querySelector<HTMLButtonElement>('.get-fingerprint')!;
   const resultContainer = container.querySelector('.result')!;
   const strategyRadio = container.querySelectorAll<HTMLInputElement>(
     'input[name="strategy"]'
