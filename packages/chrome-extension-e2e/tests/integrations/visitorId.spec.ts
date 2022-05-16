@@ -1,21 +1,16 @@
-import { FingerprintStrategy } from 'chrome-extension/src/types';
-import { ElementHandle, Page } from 'playwright';
 import { getBrowser } from '../browser';
 import { navigateToPopup } from '../navigation';
+import { Page } from 'playwright';
+import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
-async function selectStrategy(
-  page: Page | ElementHandle<HTMLElement | SVGElement>,
-  strategy: FingerprintStrategy
-) {
+async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
   const input = await page.waitForSelector(`input[value="${strategy}"]`);
 
   await input.click();
 }
 
-async function getAndCheckResult(
-  page: Page | ElementHandle<HTMLElement | SVGElement>
-) {
+async function getAndCheckResult(page: Page) {
   await page.click('.get-fingerprint');
 
   while (true) {
@@ -39,7 +34,7 @@ async function getAndCheckResult(
 }
 
 describe('visitorId', () => {
-  async function runPopupTest(strategy: FingerprintStrategy) {
+  async function runTest(strategy: FingerprintStrategy) {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
@@ -50,14 +45,14 @@ describe('visitorId', () => {
   }
 
   describe('Iframe strategy', () => {
-    it('should show visitorId in popup', async () => {
-      await runPopupTest(FingerprintStrategy.Iframe);
+    it('should show visitorId', async () => {
+      await runTest(FingerprintStrategy.Iframe);
     });
   });
 
   describe('New window strategy', () => {
-    it('should show visitorId in popup', async () => {
-      await runPopupTest(FingerprintStrategy.NewWindow);
+    it('should show visitorId', async () => {
+      await runTest(FingerprintStrategy.NewWindow);
     });
   });
 });
