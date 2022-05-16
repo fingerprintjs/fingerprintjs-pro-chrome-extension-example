@@ -62,12 +62,16 @@ describe('visitorId', () => {
       await getAndCheckResult(page);
     };
 
-    it('should show visitorId via iframe strategy', async () => {
-      await runTest(FingerprintStrategy.Iframe);
+    describe('Iframe strategy', () => {
+      it('should show visitorId via iframe strategy', async () => {
+        await runTest(FingerprintStrategy.Iframe);
+      });
     });
 
-    it('should show visitorId via new window strategy', async () => {
-      await runTest(FingerprintStrategy.NewWindow);
+    describe('New window strategy', () => {
+      it('should show visitorId via new window strategy', async () => {
+        await runTest(FingerprintStrategy.NewWindow);
+      });
     });
   });
 });
