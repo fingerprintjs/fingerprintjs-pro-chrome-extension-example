@@ -9,15 +9,15 @@ import { startWebsite, waitForWebsite } from './website';
 import { downloadExtension } from './extensions';
 import { thirdPartyExtensions } from './extensionsList';
 
-let browser: BrowserContext;
+let browserContext: BrowserContext;
 let ctxPath: string;
 let websiteProcess: ChildProcess;
 
 const extensionPath = getExtensionPath();
 
 export async function getBrowser() {
-  if (browser) {
-    return browser;
+  if (browserContext) {
+    return browserContext;
   }
 
   return createBrowser();
@@ -33,7 +33,7 @@ export async function createBrowser() {
   const { currentTestName } = expect.getState();
   const contextsPath = path.resolve(__dirname, 'contexts');
 
-  if (browser || ctxPath || websiteProcess) {
+  if (browserContext || ctxPath || websiteProcess) {
     await cleanup();
   }
 
@@ -85,7 +85,7 @@ export async function createBrowser() {
 
   const extensionId = getExtensionId(ctx);
 
-  browser = ctx;
+  browserContext = ctx;
   ctxPath = fullContextPath;
   websiteProcess = await startWebsite(extensionId);
 
@@ -93,7 +93,7 @@ export async function createBrowser() {
 
   if (shouldUseThirdPartyExtensions) {
     for (const extension of thirdPartyExtensions) {
-      await extension.install?.(browser, extensionId);
+      await extension.install?.(browserContext, extensionId);
     }
   }
 
@@ -127,8 +127,11 @@ async function waitForExtensions(browser: BrowserContext, attemptLimit = 10) {
 }
 
 export async function cleanup() {
-  if (browser) {
-    await browser.close();
+  if (browserContext) {
+    const browser = browserContext.browser();
+
+    await browserContext.close();
+    await browser?.close();
   }
 
   if (ctxPath && fs.existsSync(ctxPath)) {
