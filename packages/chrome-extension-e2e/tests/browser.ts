@@ -74,8 +74,7 @@ export async function createBrowser() {
     bypassCSP: true,
   });
 
-  // Wait for extensions to load
-  await wait(1500);
+  await waitForExtensions(ctx);
 
   const extensionId = getExtensionId(ctx);
 
@@ -90,6 +89,24 @@ export async function createBrowser() {
   }
 
   return ctx;
+}
+
+async function waitForExtensions(browser: BrowserContext, attemptLimit = 10) {
+  let attempt = 0;
+
+  while (attempt <= attemptLimit) {
+    const serviceWorkers = browser.serviceWorkers();
+
+    if (serviceWorkers.length > 0) {
+      return;
+    }
+
+    attempt++;
+
+    await wait(2000);
+  }
+
+  throw new Error('Extensions did not load');
 }
 
 export async function cleanup() {
