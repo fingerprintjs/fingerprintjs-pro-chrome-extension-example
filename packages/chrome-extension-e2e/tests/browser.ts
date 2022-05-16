@@ -106,8 +106,9 @@ async function waitForExtensions(browser: BrowserContext, attemptLimit = 10) {
   while (attempt <= attemptLimit) {
     // Create new page that should trigger our service worker
     const page = await browser.newPage();
-    await page.goto('https://example.org');
-    await page.waitForLoadState('networkidle');
+    await page.goto('https://example.org', {
+      waitUntil: 'networkidle',
+    });
 
     const serviceWorkers = browser.serviceWorkers();
 
