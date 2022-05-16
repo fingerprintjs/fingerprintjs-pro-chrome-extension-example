@@ -3,7 +3,13 @@ import { URL } from 'url';
 import { readManifest } from './manifest';
 
 export const getBackgroundWorker = (browser: BrowserContext) => {
-  const [worker] = browser.serviceWorkers();
+  const workers = browser.serviceWorkers();
+
+  if (!workers.length) {
+    throw new Error('No service workers found');
+  }
+
+  const [worker] = workers;
 
   return worker;
 };
