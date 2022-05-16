@@ -26,12 +26,12 @@ async function getAndCheckResult(
 
   while (true) {
     try {
-      const result = await page.waitForSelector('.result');
-      const textContent = await result.textContent();
+      const result = await page.waitForSelector('.result').catch(() => null);
+      const textContent = await result?.textContent();
 
       if (textContent?.startsWith('Your visitorId')) {
-        const visitorIdElement = await result.waitForSelector('b');
-        const visitorId = await visitorIdElement.textContent();
+        const visitorIdElement = await result?.waitForSelector('b');
+        const visitorId = await visitorIdElement?.textContent();
 
         expect(visitorId).toBeTruthy();
         expect(visitorId).toHaveLength(20);
