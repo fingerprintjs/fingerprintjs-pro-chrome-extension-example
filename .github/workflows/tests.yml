@@ -2,7 +2,7 @@ name: Tests
 on:
   pull_request:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
   test:
@@ -50,7 +50,7 @@ jobs:
           restore-keys: nodemodules-
 
       - name: Install dependencies
-        run: yarn install && npx playwright install-deps
+        run: yarn install && yarn upgrade --pattern playwright --pure-lockfile && npx playwright install-deps
 
       - name: Create .env file
         run: |
@@ -92,5 +92,5 @@ jobs:
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@3bf80f8ff3396c9acdab73f00109f3cd06468544
         with:
-          files: "artifacts/**/*.xml"
+          files: 'artifacts/**/*.xml'
           check_name: 'Chrome Extension E2E Test Results'
