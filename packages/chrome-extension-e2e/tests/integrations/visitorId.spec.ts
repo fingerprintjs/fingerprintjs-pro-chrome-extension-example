@@ -4,7 +4,7 @@ import { Page, ElementHandle } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
-const contentScriptUrl = 'https://fingerprintjs.com/';
+const contentScriptUrl = 'https://example.org/';
 
 async function selectStrategy(
   page: Page | ElementHandle<HTMLElement | SVGElement>,
