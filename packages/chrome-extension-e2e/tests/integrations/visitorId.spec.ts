@@ -4,8 +4,6 @@ import { Page, ElementHandle } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
-const contentScriptUrl = 'https://example.org/';
-
 // TODO Check if we need the keepalive script in background still
 async function selectStrategy(
   page: Page | ElementHandle<HTMLElement | SVGElement>,
@@ -53,32 +51,6 @@ async function getAndCheckResult(
 }
 
 describe('visitorId', () => {
-  describe.skip('Content script', () => {
-    const runTest = async (strategy: FingerprintStrategy) => {
-      const browser = await getBrowser();
-      const page = await browser.newPage();
-
-      await page.goto(contentScriptUrl, {
-        waitUntil: 'networkidle',
-      });
-
-      await selectStrategy(
-        await page.waitForSelector('.fingerprint-container'),
-        strategy
-      );
-
-      await getAndCheckResult(page);
-    };
-
-    it('should show visitorId via iframe strategy', async () => {
-      await runTest(FingerprintStrategy.Iframe);
-    });
-
-    it('should show visitorId via new window strategy', async () => {
-      await runTest(FingerprintStrategy.NewWindow);
-    });
-  });
-
   describe('Popup', () => {
     const runTest = async (strategy: FingerprintStrategy) => {
       const browser = await getBrowser();
