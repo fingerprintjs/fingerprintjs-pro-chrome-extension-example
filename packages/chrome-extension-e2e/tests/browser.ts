@@ -44,13 +44,20 @@ export async function createBrowser() {
   const contextId = currentTestName.concat(browserId);
   const fullContextPath = path.join(contextsPath, contextId, '.ctx');
 
-  const thirdPartyExtensionPaths = await Promise.all(
-    thirdPartyExtensions.map(extension => downloadExtension(extension.id))
+  let thirdPartyExtensionPaths: string[] = [];
+
+  const shouldUseThirdPartyExtensions = process.platform !== 'win32';
+
+  // Third party extensions doesn't seem to be working correctly on windows
+  if (shouldUseThirdPartyExtensions) {
+    thirdPartyExtensionPaths = await Promise.all(
+      thirdPartyExtensions.map(extension => downloadExtension(extension.id))
+    );
+  }
+
+  const extensionsToLoad = [extensionPath, ...thirdPartyExtensionPaths].join(
+    ','
   );
-
-  console.log(thirdPartyExtensionPaths);
-
-  const extensionsToLoad = [extensionPath].join(',');
 
   const extensionArgs = [
     `--disable-extensions-except=${extensionsToLoad}`,
@@ -62,13 +69,13 @@ export async function createBrowser() {
     args: [
       '--window-size=320x240',
       '--ignore-certificate-errors',
+      ...extensionArgs,
       '--no-sandbox',
-      // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
+      // Causes crash dumps to be saved locally (in ${fullContextPath}/Crashpad/reports)
       '--noerrdialogs',
-      // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
+      // Writes a verbose chrome log at ${fullContextPath}/chrome_debug.log, useful for debugging page crashes
       '--enable-logging',
       '--v=1',
-      ...extensionArgs,
     ],
     headless: false,
     bypassCSP: true,
@@ -84,8 +91,10 @@ export async function createBrowser() {
 
   await waitForWebsite();
 
-  for (const extension of thirdPartyExtensions) {
-    await extension.install?.(browser, extensionId);
+  if (shouldUseThirdPartyExtensions) {
+    for (const extension of thirdPartyExtensions) {
+      await extension.install?.(browser, extensionId);
+    }
   }
 
   return ctx;
