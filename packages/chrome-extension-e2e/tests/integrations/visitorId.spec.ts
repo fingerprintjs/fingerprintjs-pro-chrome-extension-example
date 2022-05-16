@@ -53,7 +53,7 @@ async function getAndCheckResult(
 }
 
 describe('visitorId', () => {
-  describe('Content script', () => {
+  describe.skip('Content script', () => {
     const runTest = async (strategy: FingerprintStrategy) => {
       const browser = await getBrowser();
       const page = await browser.newPage();
