@@ -26,7 +26,7 @@ async function main() {
 
   console.log('Upload result:', uploadResponse);
 
-  const publishResponse = await store.publish(token);
+  const publishResponse = await store.publish('default', token);
 
   console.log('Publish result:', publishResponse);
 }
