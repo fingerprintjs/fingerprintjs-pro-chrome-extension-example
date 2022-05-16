@@ -6,6 +6,7 @@ import { wait } from '../wait';
 
 const contentScriptUrl = 'https://example.org/';
 
+// TODO Check if we need the keepalive script in background still
 async function selectStrategy(
   page: Page | ElementHandle<HTMLElement | SVGElement>,
   strategy: FingerprintStrategy
@@ -18,13 +19,16 @@ async function selectStrategy(
 }
 
 async function getAndCheckResult(
-  page: Page | ElementHandle<HTMLElement | SVGElement>
+  page: Page | ElementHandle<HTMLElement | SVGElement>,
+  maxAttempts = 10
 ) {
+  let attempt = 0;
+
   await page.click('.get-fingerprint', {
     force: true,
   });
 
-  while (true) {
+  while (maxAttempts >= attempt) {
     try {
       const result = await page.waitForSelector('.result').catch(() => null);
       const textContent = await result?.textContent();
@@ -39,9 +43,13 @@ async function getAndCheckResult(
         return;
       }
     } finally {
+      attempt++;
+
       await wait(1000);
     }
   }
+
+  throw new Error('Fingerprint could not be retrieved');
 }
 
 describe('visitorId', () => {
