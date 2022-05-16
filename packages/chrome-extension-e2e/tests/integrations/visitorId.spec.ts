@@ -12,13 +12,17 @@ async function selectStrategy(
 ) {
   const input = await page.waitForSelector(`input[value="${strategy}"]`);
 
-  await input.click();
+  await input.click({
+    force: true,
+  });
 }
 
 async function getAndCheckResult(
   page: Page | ElementHandle<HTMLElement | SVGElement>
 ) {
-  await page.click('.get-fingerprint');
+  await page.click('.get-fingerprint', {
+    force: true,
+  });
 
   while (true) {
     try {
