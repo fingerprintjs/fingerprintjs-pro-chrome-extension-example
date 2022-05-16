@@ -55,13 +55,11 @@ export async function createBrowser() {
     );
   }
 
-  const extensionsToLoad = [extensionPath, ...thirdPartyExtensionPaths].join(
-    ','
-  );
+  console.log({ thirdPartyExtensionPaths });
 
   const extensionArgs = [
-    `--disable-extensions-except=${extensionsToLoad}`,
-    `--load-extension=${extensionsToLoad}`,
+    `--disable-extensions-except=${extensionPath}`,
+    `--load-extension=${extensionPath}`,
   ];
 
   const ctx = await chromium.launchPersistentContext(fullContextPath, {
