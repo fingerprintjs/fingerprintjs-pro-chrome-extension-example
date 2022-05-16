@@ -48,9 +48,9 @@ export async function createBrowser() {
     thirdPartyExtensions.map(extension => downloadExtension(extension.id))
   );
 
-  const extensionsToLoad = [...thirdPartyExtensionPaths, extensionPath].join(
-    ','
-  );
+  console.log(thirdPartyExtensionPaths);
+
+  const extensionsToLoad = [extensionPath].join(',');
 
   const extensionArgs = [
     `--disable-extensions-except=${extensionsToLoad}`,

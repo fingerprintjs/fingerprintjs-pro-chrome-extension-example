@@ -34,6 +34,12 @@ export async function downloadExtension(extensionId: string) {
 
   const { arch, chromeVersion } = await getBrowserInfo();
 
+  console.log('Downloading extension', {
+    extensionId,
+    arch,
+    chromeVersion,
+  });
+
   const downloadUrl = `https://clients2.google.com/service/update2/crx?response=redirect&prodversion=${chromeVersion}&x=id%3D${extensionId}%26installsource%3Dondemand%26uc&nacl_arch=${arch}&acceptformat=crx2,crx3`;
 
   const response = await fetch(downloadUrl);
