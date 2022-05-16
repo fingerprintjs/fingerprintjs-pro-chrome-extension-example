@@ -1,39 +1,26 @@
 import { getBrowser } from '../browser';
 import { navigateToPopup } from '../navigation';
-import { Page, ElementHandle } from 'playwright';
+import { Page } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { wait } from '../wait';
 
-// TODO Check if we need the keepalive script in background still
-async function selectStrategy(
-  page: Page | ElementHandle<HTMLElement | SVGElement>,
-  strategy: FingerprintStrategy
-) {
+async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
   const input = await page.waitForSelector(`input[value="${strategy}"]`);
 
-  await input.click({
-    force: true,
-  });
+  await input.click();
 }
 
-async function getAndCheckResult(
-  page: Page | ElementHandle<HTMLElement | SVGElement>,
-  maxAttempts = 10
-) {
-  let attempt = 0;
+async function getAndCheckResult(page: Page) {
+  await page.click('.get-fingerprint');
 
-  await page.click('.get-fingerprint', {
-    force: true,
-  });
-
-  while (maxAttempts >= attempt) {
+  while (true) {
     try {
-      const result = await page.waitForSelector('.result').catch(() => null);
-      const textContent = await result?.textContent();
+      const result = await page.waitForSelector('.result');
+      const textContent = await result.textContent();
 
       if (textContent?.startsWith('Your visitorId')) {
-        const visitorIdElement = await result?.waitForSelector('b');
-        const visitorId = await visitorIdElement?.textContent();
+        const visitorIdElement = await result.waitForSelector('b');
+        const visitorId = await visitorIdElement.textContent();
 
         expect(visitorId).toBeTruthy();
         expect(visitorId).toHaveLength(20);
@@ -41,37 +28,31 @@ async function getAndCheckResult(
         return;
       }
     } finally {
-      attempt++;
-
       await wait(1000);
     }
   }
-
-  throw new Error('Fingerprint could not be retrieved');
 }
 
 describe('visitorId', () => {
-  describe('Popup', () => {
-    const runTest = async (strategy: FingerprintStrategy) => {
-      const browser = await getBrowser();
-      const page = await browser.newPage();
+  async function runTest(strategy: FingerprintStrategy) {
+    const browser = await getBrowser();
+    const page = await browser.newPage();
 
-      await navigateToPopup(page);
-      await selectStrategy(page, strategy);
+    await navigateToPopup(page);
+    await selectStrategy(page, strategy);
 
-      await getAndCheckResult(page);
-    };
+    await getAndCheckResult(page);
+  }
 
-    describe('Iframe strategy', () => {
-      it('should show visitorId via iframe strategy', async () => {
-        await runTest(FingerprintStrategy.Iframe);
-      });
+  describe('Iframe strategy', () => {
+    it('should show visitorId', async () => {
+      await runTest(FingerprintStrategy.Iframe);
     });
+  });
 
-    describe('New window strategy', () => {
-      it('should show visitorId via new window strategy', async () => {
-        await runTest(FingerprintStrategy.NewWindow);
-      });
+  describe('New window strategy', () => {
+    it('should show visitorId', async () => {
+      await runTest(FingerprintStrategy.NewWindow);
     });
   });
 });
