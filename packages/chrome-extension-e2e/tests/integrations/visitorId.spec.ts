@@ -1,6 +1,7 @@
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { ElementHandle, Page } from 'playwright';
 import { getBrowser } from '../browser';
+import { navigateToPopup } from '../navigation';
 import { wait } from '../wait';
 
 async function selectStrategy(
@@ -36,13 +37,20 @@ async function getAndCheckResult(page: Page | ElementHandle) {
 }
 
 describe('visitorId', () => {
-  async function runTest(strategy: FingerprintStrategy) {
+  async function runTest(
+    strategy: FingerprintStrategy,
+    place: 'contentScript' | 'popup'
+  ) {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
-    await page.goto('https://example.org', {
-      waitUntil: 'networkidle',
-    });
+    if (place === 'contentScript') {
+      await page.goto('https://example.org', {
+        waitUntil: 'networkidle',
+      });
+    } else {
+      await navigateToPopup(page);
+    }
 
     await selectStrategy(
       await page.waitForSelector('.fingerprint-container'),
@@ -53,14 +61,22 @@ describe('visitorId', () => {
   }
 
   describe('Iframe strategy', () => {
-    it('should show visitorId', async () => {
-      await runTest(FingerprintStrategy.Iframe);
+    it('should show visitorId in popup', async () => {
+      await runTest(FingerprintStrategy.Iframe, 'popup');
+    });
+
+    it('should show visitorId in content script', async () => {
+      await runTest(FingerprintStrategy.Iframe, 'contentScript');
     });
   });
 
   describe('New window strategy', () => {
-    it('should show visitorId', async () => {
-      await runTest(FingerprintStrategy.NewWindow);
+    it('should show visitorId in popup', async () => {
+      await runTest(FingerprintStrategy.NewWindow, 'popup');
+    });
+
+    it('should show visitorId in content script', async () => {
+      await runTest(FingerprintStrategy.NewWindow, 'contentScript');
     });
   });
 });
