@@ -48,6 +48,7 @@
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
+    "ora": "5.4.1",
     "prettier": "^2.5.1",
     "semantic-release": "^19.0.2",
     "semantic-release-monorepo": "^7.0.5",

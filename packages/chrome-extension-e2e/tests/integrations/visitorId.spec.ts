@@ -1,8 +1,10 @@
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { ElementHandle, Page } from 'playwright';
-import { createBrowser } from '../browser';
 import { navigateToPopup } from '../navigation';
+import { extensionTest } from '../setupPw';
 import { wait } from '../wait';
+
+const { expect, describe } = extensionTest;
 
 async function selectStrategy(
   page: Page | ElementHandle,
@@ -38,12 +40,10 @@ async function getAndCheckResult(page: Page | ElementHandle) {
 
 describe('visitorId', () => {
   async function runTest(
+    page: Page,
     strategy: FingerprintStrategy,
     place: 'contentScript' | 'popup'
   ) {
-    const browser = await createBrowser();
-    const page = await browser.newPage();
-
     if (place === 'contentScript') {
       await page.goto('https://example.org', {
         waitUntil: 'networkidle',
@@ -61,14 +61,14 @@ describe('visitorId', () => {
   }
 
   describe('Iframe strategy', () => {
-    it('should show visitorId', async () => {
-      await runTest(FingerprintStrategy.Iframe, 'contentScript');
+    extensionTest('should show visitorId', async ({ page }) => {
+      await runTest(page, FingerprintStrategy.Iframe, 'contentScript');
     });
   });
 
   describe('New window strategy', () => {
-    it('should show visitorId in', async () => {
-      await runTest(FingerprintStrategy.NewWindow, 'contentScript');
+    extensionTest('should show visitorId in', async ({ page }) => {
+      await runTest(page, FingerprintStrategy.NewWindow, 'contentScript');
     });
   });
 });

@@ -99,7 +99,7 @@ export async function createBrowser() {
   return ctx;
 }
 
-async function waitForExtensions(
+export async function waitForExtensions(
   browserContext: BrowserContext,
   attemptLimit = 20
 ) {
