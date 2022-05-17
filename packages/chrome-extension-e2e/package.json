@@ -7,7 +7,7 @@
     "e2e": "npx playwright test --headed"
   },
   "devDependencies": {
-    "@playwright/test": "^1.22.0",
+    "@playwright/test": "*",
     "@types/node-fetch": "^2.6.1",
     "node-fetch": "^2.6.7",
     "playwright": "*"
