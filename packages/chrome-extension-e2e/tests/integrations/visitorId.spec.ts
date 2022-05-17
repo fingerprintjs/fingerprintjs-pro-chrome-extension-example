@@ -61,14 +61,28 @@ describe('visitorId', () => {
   }
 
   describe('Iframe strategy', () => {
-    extensionTest('should show visitorId', async ({ page }) => {
-      await runTest(page, FingerprintStrategy.Iframe, 'contentScript');
+    extensionTest(
+      'should show visitorId in content script',
+      async ({ page }) => {
+        await runTest(page, FingerprintStrategy.Iframe, 'contentScript');
+      }
+    );
+
+    extensionTest('should show visitorId in popup', async ({ page }) => {
+      await runTest(page, FingerprintStrategy.Iframe, 'popup');
     });
   });
 
   describe('New window strategy', () => {
-    extensionTest('should show visitorId in', async ({ page }) => {
-      await runTest(page, FingerprintStrategy.NewWindow, 'contentScript');
+    extensionTest(
+      'should show visitorId in content script',
+      async ({ page }) => {
+        await runTest(page, FingerprintStrategy.NewWindow, 'contentScript');
+      }
+    );
+
+    extensionTest('should show visitorId in popup', async ({ page }) => {
+      await runTest(page, FingerprintStrategy.NewWindow, 'popup');
     });
   });
 });
