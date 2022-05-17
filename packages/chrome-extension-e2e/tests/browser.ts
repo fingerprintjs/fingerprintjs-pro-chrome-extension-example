@@ -100,17 +100,20 @@ export async function createBrowser() {
   return ctx;
 }
 
-async function waitForExtensions(browser: BrowserContext, attemptLimit = 20) {
+async function waitForExtensions(
+  browserContext: BrowserContext,
+  attemptLimit = 20
+) {
   let attempt = 0;
 
   while (attempt <= attemptLimit) {
     // Create new page that should trigger our service worker
-    const page = await browser.newPage();
+    const page = await browserContext.newPage();
     await page.goto('https://example.org', {
       waitUntil: 'networkidle',
     });
 
-    const serviceWorkers = browser.serviceWorkers();
+    const serviceWorkers = browserContext.serviceWorkers();
 
     await page.close();
 
