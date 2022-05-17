@@ -8,12 +8,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.22.0",
-    "@types/jest": "^27.5.0",
     "@types/node-fetch": "^2.6.1",
-    "jest": "^28.0.3",
-    "jest-junit": "13.2.0",
     "node-fetch": "^2.6.7",
-    "playwright": "*",
-    "ts-jest": "^28.0.1"
+    "playwright": "*"
   }
 }
