@@ -1,6 +1,6 @@
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { ElementHandle, Page } from 'playwright';
-import { getBrowser } from '../browser';
+import { createBrowser } from '../browser';
 import { navigateToPopup } from '../navigation';
 import { wait } from '../wait';
 
@@ -41,7 +41,7 @@ describe('visitorId', () => {
     strategy: FingerprintStrategy,
     place: 'contentScript' | 'popup'
   ) {
-    const browser = await getBrowser();
+    const browser = await createBrowser();
     const page = await browser.newPage();
 
     if (place === 'contentScript') {

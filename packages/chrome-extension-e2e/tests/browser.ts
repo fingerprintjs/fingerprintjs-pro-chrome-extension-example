@@ -1,27 +1,24 @@
-import { BrowserContext, chromium } from 'playwright';
-import * as path from 'path';
-import * as fs from 'fs';
-import { getExtensionPath } from './paths';
-import { wait } from './wait';
 import type { ChildProcess } from 'child_process';
-import { getExtensionId } from './url';
-import { startWebsite, waitForWebsite } from './website';
+import * as fs from 'fs';
+import * as path from 'path';
+import { BrowserContext, chromium } from 'playwright';
 import { downloadExtension } from './extensions';
 import { thirdPartyExtensions } from './extensionsList';
+import { getExtensionPath } from './paths';
+import { getExtensionId } from './url';
+import { wait } from './wait';
+import { startWebsite, waitForWebsite } from './website';
 
-let browserContext: BrowserContext;
-let ctxPath: string;
-let websiteProcess: ChildProcess;
+export interface BrowserBag {
+  id: string;
+  ctx: BrowserContext;
+  ctxPath: string;
+  websiteProcess: ChildProcess;
+}
+
+let browsers: BrowserBag[] = [];
 
 const extensionPath = getExtensionPath();
-
-export async function getBrowser() {
-  if (browserContext) {
-    return browserContext;
-  }
-
-  return createBrowser();
-}
 
 export async function createBrowser() {
   if (!fs.existsSync(extensionPath)) {
@@ -32,10 +29,6 @@ export async function createBrowser() {
 
   const { currentTestName } = expect.getState();
   const contextsPath = path.resolve(__dirname, 'contexts');
-
-  if (browserContext || ctxPath || websiteProcess) {
-    await cleanup();
-  }
 
   if (!fs.existsSync(contextsPath)) {
     fs.mkdirSync(contextsPath);
@@ -85,9 +78,15 @@ export async function createBrowser() {
 
   const extensionId = getExtensionId(ctx);
 
-  browserContext = ctx;
-  ctxPath = fullContextPath;
-  websiteProcess = await startWebsite(extensionId);
+  const browserContext = ctx;
+  const websiteProcess = await startWebsite(extensionId);
+
+  browsers.push({
+    ctx,
+    ctxPath: fullContextPath,
+    websiteProcess,
+    id: browserId,
+  });
 
   await waitForWebsite();
 
@@ -130,22 +129,26 @@ async function waitForExtensions(
 }
 
 export async function cleanup() {
-  if (browserContext) {
-    const browser = browserContext.browser();
+  await Promise.all(
+    browsers.map(async ({ ctx, ctxPath, websiteProcess }) => {
+      {
+        const browser = ctx.browser();
 
-    await browserContext.close();
-    await browser?.close();
-  }
+        await ctx.close();
+        await browser?.close();
+      }
 
-  if (ctxPath && fs.existsSync(ctxPath)) {
-    try {
-      fs.unlinkSync(ctxPath);
-    } catch (error) {
-      // Nothing here...
-    }
-  }
+      if (fs.existsSync(ctxPath)) {
+        try {
+          fs.unlinkSync(ctxPath);
+        } catch (error) {
+          // Nothing here...
+        }
+      }
 
-  if (websiteProcess) {
-    websiteProcess.kill();
-  }
+      websiteProcess.kill();
+    })
+  );
+
+  browsers = [];
 }
