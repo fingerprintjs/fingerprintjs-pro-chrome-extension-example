@@ -100,7 +100,7 @@ export async function createBrowser() {
   return ctx;
 }
 
-async function waitForExtensions(browser: BrowserContext, attemptLimit = 10) {
+async function waitForExtensions(browser: BrowserContext, attemptLimit = 20) {
   let attempt = 0;
 
   while (attempt <= attemptLimit) {
