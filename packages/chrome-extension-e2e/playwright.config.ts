@@ -8,6 +8,7 @@ dotenv.config({
 const config: PlaywrightTestConfig = {
   retries: 3,
   workers: 1,
+  reporter: [['junit', { outputFile: 'reports/report.xml' }]],
 };
 
 export default config;

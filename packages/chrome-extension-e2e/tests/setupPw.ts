@@ -1,8 +1,8 @@
 import test, { chromium } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
-import { waitForExtensions } from './browser';
-import { downloadExtension } from './extensions';
+import { waitForExtensions } from './waitForExtensions';
+import { downloadExtension } from './thirdPartyExtensions';
 import { thirdPartyExtensions } from './extensionsList';
 import { getExtensionPath } from './paths';
 import { getExtensionId } from './url';
@@ -26,7 +26,9 @@ export const extensionTest = test.extend<{}>({
       const userDataDir = path.join(contextsPath, browserId.concat('.ctx'));
 
       const thirdPartyExtensionPaths = await Promise.all(
-        thirdPartyExtensions.map(extension => downloadExtension(extension.id))
+        thirdPartyExtensions.map(extension =>
+          downloadExtension(extension.id, extension.name)
+        )
       );
 
       const extensionsToLoad = [

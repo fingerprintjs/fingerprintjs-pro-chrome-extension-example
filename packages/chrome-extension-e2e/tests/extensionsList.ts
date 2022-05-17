@@ -3,16 +3,17 @@ import type { BrowserContext, Page } from 'playwright';
 export interface ExtensionDefinition {
   id: string;
   install?: (browser: BrowserContext, extensionId: string) => Promise<void>;
+  name: string;
 }
 
 export const thirdPartyExtensions: ExtensionDefinition[] = [
   {
-    // UBlock
     id: 'cjpalhdlnbpafiamejdnhcphjbkeiagm',
+    name: 'uBlock',
   },
   {
-    // Ghostery
     id: 'mlomiejdfkolichcflejclcbmpeaniij',
+    name: 'Ghostery',
     install: async browser => {
       let page: Page | undefined;
 

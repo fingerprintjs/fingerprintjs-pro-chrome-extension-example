@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import * as path from 'path';
 import * as fs from 'fs';
 import AdmZip from 'adm-zip';
+import ora from 'ora';
 
 const extensionsPath = path.resolve(__dirname, '../thirdPartyExtensions');
 
@@ -27,18 +28,14 @@ async function crxToZip(data: ArrayBuffer) {
   return Buffer.from(data, zipStartOffset, data.byteLength - zipStartOffset);
 }
 
-export async function downloadExtension(extensionId: string) {
+export async function downloadExtension(extensionId: string, name: string) {
+  const spinner = ora(`Downloading ${name}`).start();
+
   if (!fs.existsSync(extensionsPath)) {
     fs.mkdirSync(extensionsPath);
   }
 
   const { arch, chromeVersion } = await getBrowserInfo();
-
-  console.log('Downloading extension', {
-    extensionId,
-    arch,
-    chromeVersion,
-  });
 
   const downloadUrl = `https://clients2.google.com/service/update2/crx?response=redirect&prodversion=${chromeVersion}&x=id%3D${extensionId}%26installsource%3Dondemand%26uc&nacl_arch=${arch}&acceptformat=crx2,crx3`;
 
@@ -50,6 +47,8 @@ export async function downloadExtension(extensionId: string) {
   const zip = new AdmZip(buffer);
 
   zip.extractAllTo(extractPath, true);
+
+  spinner.succeed(`Downloaded ${name}`);
 
   return extractPath;
 }
