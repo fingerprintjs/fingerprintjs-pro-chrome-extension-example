@@ -1,16 +1,18 @@
-import { getBrowser } from '../browser';
-import { navigateToPopup } from '../navigation';
-import { Page } from 'playwright';
 import { FingerprintStrategy } from 'chrome-extension/src/types';
+import { ElementHandle, Page } from 'playwright';
+import { getBrowser } from '../browser';
 import { wait } from '../wait';
 
-async function selectStrategy(page: Page, strategy: FingerprintStrategy) {
+async function selectStrategy(
+  page: Page | ElementHandle,
+  strategy: FingerprintStrategy
+) {
   const input = await page.waitForSelector(`input[value="${strategy}"]`);
 
   await input.click();
 }
 
-async function getAndCheckResult(page: Page) {
+async function getAndCheckResult(page: Page | ElementHandle) {
   await page.click('.get-fingerprint');
 
   while (true) {
@@ -38,8 +40,14 @@ describe('visitorId', () => {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
-    await navigateToPopup(page);
-    await selectStrategy(page, strategy);
+    await page.goto('https://example.org', {
+      waitUntil: 'networkidle',
+    });
+
+    await selectStrategy(
+      await page.waitForSelector('.fingerprint-container'),
+      strategy
+    );
 
     await getAndCheckResult(page);
   }
