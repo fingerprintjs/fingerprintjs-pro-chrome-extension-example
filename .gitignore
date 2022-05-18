@@ -1,3 +1,9 @@
 node_modules
 **/build
 .env
+packages/chrome-extension-e2e/thirdPartyExtensions
+packages/chrome-extension-e2e/tests/contexts
+.idea
+
+**/.DS_Store
+**/report.xml
