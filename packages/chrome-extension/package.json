@@ -2,7 +2,7 @@
   "name": "chrome-extension",
   "version": "1.0.2",
   "private": true,
-  "description": "Sample chrome extension that uses FingerprintJS pro agent.",
+  "description": "Sample chrome extension that uses FingerprintJS FingerprintJS Pro JavaScript agent.",
   "scripts": {
     "build": "webpack -c webpack.config.js --mode production",
     "zip": "yarn run build && cd build && zip -r ../build.zip *",
