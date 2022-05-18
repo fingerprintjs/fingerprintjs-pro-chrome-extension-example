@@ -84,4 +84,4 @@ After cloning the repository perform these operations:
   - Paste it into `.env` as `EXTENSION_IDS`. It is needed, so that the **website** can communicate with the extension.
 - Run `yarn website:start` to run the website.
   - **Note**: Required `chrome` API for **New window** strategy is not available on pages that are not served via `HTTPS`, so the website is served on `https://localhost:8080/`. You can safely ignore the warning regarding the certificate.
-    \*For the [subdomain integration](https://dev.fingerprintjs.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.
+  - In order to use the [subdomain integration](https://dev.fingerprintjs.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.
