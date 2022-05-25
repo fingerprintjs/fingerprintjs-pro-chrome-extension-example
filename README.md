@@ -27,7 +27,7 @@ You can install the example chrome extension from [Chrome Web Store](https://chr
 
 ### Why it exists
 
-Due to limitations in the Chrome extension environment regarding executing remote code, the FingerprintJS Pro JavaScript agent doesn't work there by default.
+The Chrome extension environment has limited capabilities for dynamic scripts running within content scripts. This repository showcases different strategies on how FingeprintJS Pro can be used in this ecosystem. 
 
 ### How it works
 
