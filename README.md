@@ -27,7 +27,7 @@ You can install the example chrome extension from [Chrome Web Store](https://chr
 
 ### Why it exists
 
-The Chrome extension environment has limited capabilities for dynamic scripts running within content scripts. This repository showcases different strategies on how FingeprintJS Pro can be used in this ecosystem. 
+The Chrome extension environment has limited capabilities for external scripts running within content scripts. This repository showcases different strategies on how FingeprintJS Pro can be used in this ecosystem. 
 
 ### How it works
 
