@@ -1,6 +1,10 @@
 <p align="center">
-  <a href="https://fingerprintjs.com">
-    <img src="readmeAssets/logo.svg" alt="FingerprintJS" width="312px" />
+  <a href="https://fingerprint.com">
+    <picture>
+     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fingerprintjs/fingerprintjs-pro-chrome-extension/main/resources/logo_light.svg" />
+     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/fingerprintjs/fingerprintjs-pro-chrome-extension/main/resources/logo_dark.svg" />
+     <img src="https://raw.githubusercontent.com/fingerprintjs/fingerprintjs-pro-chrome-extension/main/resources/logo_dark.svg" alt="Fingerprint logo" width="312px" />
+   </picture>
   </a>
 </p>
 <p align="center">
@@ -86,8 +90,8 @@ After cloning the repository perform these operations:
   - Click **Load unpacked**.
   - Select `packages/chrome-extension/build` directory.
   - You should see the **FingerprintJS Example Browser Extension** extension, make sure that it is activated.
-  - Copy the `extension ID`: ![](readmeAssets/extension_id.png)
+  - Copy the `extension ID`: ![](resources/extension_id.png)
   - Paste it into `.env` as `EXTENSION_IDS`. It is needed, so that the **website** can communicate with the extension.
 - Run `yarn website:start` to run the website.
   - **Note**: Required `chrome` API for **New window** strategy is not available on pages that are not served via `HTTPS`, so the website is served on `https://localhost:8080/`. You can safely ignore the warning regarding the certificate.
-  - In order to use the [subdomain integration](https://dev.fingerprintjs.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.
+  - In order to use the [subdomain integration](https://dev.fingerprint.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.
