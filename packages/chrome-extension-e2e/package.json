@@ -7,9 +7,9 @@
     "e2e": "npx playwright test --headed"
   },
   "devDependencies": {
-    "@playwright/test": "*",
+    "@playwright/test": "latest",
     "@types/node-fetch": "^2.6.1",
     "node-fetch": "^2.6.7",
-    "playwright": "*"
+    "playwright": "latest"
   }
 }
