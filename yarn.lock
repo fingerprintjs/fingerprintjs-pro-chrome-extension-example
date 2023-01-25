@@ -6685,9 +6685,13 @@ ts-loader@^9.2.8:
     micromatch "^4.0.0"
     semver "^7.3.4"
 
-"ts-loader@link:node_modules/ts-loader":
-  version "0.0.0"
-  uid ""
+"ts-loader@file:node_modules/ts-loader":
+  version "9.3.0"
+  dependencies:
+    chalk "^4.1.0"
+    enhanced-resolve "^5.0.0"
+    micromatch "^4.0.0"
+    semver "^7.3.4"
 
 ts-node@^10.7.0:
   version "10.7.0"

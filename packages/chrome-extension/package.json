@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "chrome-webstore-upload": "^1.0.0",
-    "ts-loader": "link:../../node_modules/ts-loader"
+    "ts-loader": "file:../../node_modules/ts-loader"
   }
 }
