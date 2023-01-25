@@ -49,19 +49,19 @@ module.exports = (env, { mode }) => {
       rules: [
         {
           test: /\.html$/,
-          loader: require.resolve('html-loader'),
+          loader: 'html-loader',
           exclude: /node_modules/,
         },
         {
           test: /\.tsx?$/i,
-          loader: require.resolve('ts-loader'),
+          loader: 'ts-loader',
           exclude: /node_modules/,
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
           use: [
             {
-              loader: require.resolve('file-loader'),
+              loader: 'file-loader',
             },
           ],
         },
