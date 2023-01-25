@@ -50,7 +50,11 @@ jobs:
           restore-keys: nodemodules-
 
       - name: Install dependencies
-        run: yarn install && yarn upgrade --pattern playwright --pure-lockfile && npx playwright install-deps
+        run: yarn install
+
+      - name: Setup playwright
+        run: yarn upgrade --pattern playwright --pure-lockfile && npx playwright install-deps && npx playwright --version
+        working-directory: packages/chrome-extension-e2e
 
       - name: Create .env file
         run: |
