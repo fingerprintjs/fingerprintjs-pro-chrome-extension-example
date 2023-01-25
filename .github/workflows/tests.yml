@@ -42,13 +42,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: nodemodules-${{ hashFiles('yarn.lock') }}-${{ matrix.os }}
-          restore-keys: nodemodules-
-
       - name: Install dependencies
         run: yarn install
 
