@@ -59,6 +59,8 @@ export const extensionTest = test.extend<{}>({
         permissions: [],
       });
 
+      context.setDefaultTimeout(5000);
+
       await waitForExtensions(context);
 
       const extensionId = getExtensionId(context);

@@ -27,12 +27,9 @@ export const thirdPartyExtensions: ExtensionDefinition[] = [
       }
 
       if (page) {
-        await page.click('[href="#setup"]', {
-          timeout: 5000,
-        });
+        await page.click('[href="#setup"]');
         const input = await page.waitForSelector('text=Block Everything', {
           state: 'attached',
-          timeout: 5000,
         });
 
         await input.click({
