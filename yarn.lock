@@ -261,10 +261,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fingerprintjs/fingerprintjs-pro@^3.6.0", "@fingerprintjs/fingerprintjs-pro@^3.6.1":
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.6.2.tgz#d3a8df9d66ebf3b72b5cbd0202981c539c58ee26"
-  integrity sha512-wnBDWlihoWIlz4u2phgzYUtM4q6gLLIjxUgsp3DP4wFR6RFkwwbk8lp8ICUEqKhbTIqN2WDkLyaVYBfkax916A==
+"@fingerprintjs/fingerprintjs-pro@^3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.8.1.tgz#b972659f1d341b7054106a3f27c5ba028f8f2ea2"
+  integrity sha512-hIpShbh75po8j7AQQ2a/avI/X4KCe/wXR9B8+yeK9UQpnADBcNBuSCaaBIQDmDoHCxCsS/2hma91dgwt/u+6cA==
   dependencies:
     tslib "^2.0.1"
 
@@ -634,13 +634,13 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@playwright/test@*":
-  version "1.22.2"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.22.2.tgz#b848f25f8918140c2d0bae8e9227a40198f2dd4a"
-  integrity sha512-cCl96BEBGPtptFz7C2FOSN3PrTnJ3rPpENe+gYCMx4GNNDlN4tmo2D89y13feGKTMMAIVrXfSQ/UmaQKLy1XLA==
+"@playwright/test@latest":
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.30.0.tgz#8c0c4930ff2c7be7b3ec3fd434b2a3b4465ed7cb"
+  integrity sha512-SVxkQw1xvn/Wk/EvBnqWIq6NLo1AppwbYOjNLmyU0R1RoQ3rLEBtmjTnElcnz8VEtn11fptj1ECxK0tgURhajw==
   dependencies:
     "@types/node" "*"
-    playwright-core "1.22.2"
+    playwright-core "1.30.0"
 
 "@semantic-release/changelog@^6.0.1":
   version "6.0.1"
@@ -5502,22 +5502,17 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-playwright-core@1.22.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.22.0.tgz#e738a0c83f4be0984c953ab25d2bc77545187ecc"
-  integrity sha512-XnDPiV4NCzTtXWxQdyJ6Wg8xhST3ciUjt5mITaxoqOoYggmRtofKm0PXLehfbetXh2ppPYj5U8UhtUpdIE4wag==
+playwright-core@1.30.0:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.30.0.tgz#de987cea2e86669e3b85732d230c277771873285"
+  integrity sha512-7AnRmTCf+GVYhHbLJsGUtskWTE33SwMZkybJ0v6rqR1boxq2x36U7p1vDRV7HO2IwTZgmycracLxPEJI49wu4g==
 
-playwright-core@1.22.2:
-  version "1.22.2"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.22.2.tgz#ed2963d79d71c2a18d5a6fd25b60b9f0a344661a"
-  integrity sha512-w/hc/Ld0RM4pmsNeE6aL/fPNWw8BWit2tg+TfqJ3+p59c6s3B6C8mXvXrIPmfQEobkcFDc+4KirNzOQ+uBSP1Q==
-
-playwright@*:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.22.0.tgz#7b0f684f618faa6ff422fc584a9ff167d844c49a"
-  integrity sha512-T2UqJAuvJip7TfYwvl7h3gUWtEE5D950PKd96POhUpumG3BkMfiLmXOe6Ja6UP39Ab3wEvatUJYBXvZCkocfpg==
+playwright@latest:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.30.0.tgz#b1d7be2d45d97fbb59f829f36f521f12010fe072"
+  integrity sha512-ENbW5o75HYB3YhnMTKJLTErIBExrSlX2ZZ1C/FzmHjUYIfxj/UnI+DWpQr992m+OQVSg0rCExAOlRwB+x+yyIg==
   dependencies:
-    playwright-core "1.22.0"
+    playwright-core "1.30.0"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -6007,7 +6002,7 @@ selfsigned@^2.0.1:
   dependencies:
     node-forge "^1"
 
-semantic-release-monorepo@^7.0.5:
+semantic-release-monorepo@7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/semantic-release-monorepo/-/semantic-release-monorepo-7.0.5.tgz#96b7ff0aff183db2f81e71e5f821ed4adc7d5647"
   integrity sha512-riOYD8eZ5PIST7o97Ltc01l8VQW7q01NmPDRPOBycaeZczJowyKkzkBfo92kTIWDFWbdO3G8A695JrrYjoTaiw==
@@ -6025,7 +6020,7 @@ semantic-release-plugin-decorators@^3.0.0:
   resolved "https://registry.yarnpkg.com/semantic-release-plugin-decorators/-/semantic-release-plugin-decorators-3.0.1.tgz#961b5fec7e1ab113aa10aed5256ee7c3ee6804d9"
   integrity sha512-f5Qjvv/AJYByvkaj11a+05gQwfPwgQKo5OIhj8YVM2Dhf2rOPEOLD83jGrTdM7Nuf//sZYw77/cGUSVygUG9Kg==
 
-semantic-release@^19.0.3:
+semantic-release@19.0.3:
   version "19.0.3"
   resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-19.0.3.tgz#9291053ad9890052f28e7c5921d4741530d516fd"
   integrity sha512-HaFbydST1cDKZHuFZxB8DTrBLJVK/AnDExpK0s3EqLIAAUAHUgnd+VSJCUtTYQKkAkauL8G9CucODrVCc7BuAA==

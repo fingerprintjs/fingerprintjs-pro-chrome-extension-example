@@ -7,6 +7,7 @@ import { thirdPartyExtensions } from './extensionsList';
 import { getExtensionPath } from './paths';
 import { getExtensionId } from './url';
 import { startWebsite, waitForWebsite } from './website';
+import ora from 'ora';
 
 const extensionPath = getExtensionPath();
 const contextsPath = path.resolve(__dirname, 'contexts');
@@ -58,6 +59,8 @@ export const extensionTest = test.extend<{}>({
         permissions: [],
       });
 
+      context.setDefaultTimeout(5000);
+
       await waitForExtensions(context);
 
       const extensionId = getExtensionId(context);
@@ -66,7 +69,16 @@ export const extensionTest = test.extend<{}>({
       await waitForWebsite();
 
       for (const extension of thirdPartyExtensions) {
-        await extension.install?.(context, extensionId);
+        const spinner = ora(`Installing ${extension.name}...`).start();
+
+        await extension
+          .install?.(context, extensionId)
+          .then(() => spinner.succeed())
+          .catch(error => {
+            spinner.fail();
+
+            throw error;
+          });
       }
 
       await use(context);
