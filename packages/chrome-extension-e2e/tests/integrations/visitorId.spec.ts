@@ -1,7 +1,7 @@
 import { FingerprintStrategy } from 'chrome-extension/src/types';
 import { ElementHandle, Page } from 'playwright';
 import { navigateToPopup } from '../navigation';
-import { extensionTest } from '../setupPw';
+import { extensionTest, extensionWithThirdPartyTest } from '../setupPw';
 import { wait } from '../wait';
 
 const { expect, describe } = extensionTest;
@@ -70,9 +70,12 @@ describe('visitorId', () => {
       }
     );
 
-    extensionTest('should show visitorId in popup', async ({ page }) => {
-      await runTest(page, FingerprintStrategy.Iframe, 'popup');
-    });
+    extensionWithThirdPartyTest(
+      'should show visitorId in popup',
+      async ({ page }) => {
+        await runTest(page, FingerprintStrategy.Iframe, 'popup');
+      }
+    );
   });
 
   describe('New window strategy', () => {

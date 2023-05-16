@@ -11,69 +11,78 @@ import { startWebsite, waitForWebsite } from './website';
 const extensionPath = getExtensionPath();
 const contextsPath = path.resolve(__dirname, 'contexts');
 
-export const extensionTest = test.extend<{}>({
-  context: [
-    async ({}, use) => {
-      if (!fs.existsSync(extensionPath)) {
-        throw new Error(`Extension path ${extensionPath} does not exist`);
-      }
+export function createExtensionTest(useThirdPartyExtensions = false) {
+  return test.extend<{}>({
+    context: [
+      async ({}, use) => {
+        if (!fs.existsSync(extensionPath)) {
+          throw new Error(`Extension path ${extensionPath} does not exist`);
+        }
 
-      if (!fs.existsSync(contextsPath)) {
-        fs.mkdirSync(contextsPath);
-      }
+        if (!fs.existsSync(contextsPath)) {
+          fs.mkdirSync(contextsPath);
+        }
 
-      const browserId = Date.now().toString();
-      const userDataDir = path.join(contextsPath, browserId.concat('.ctx'));
+        const browserId = Date.now().toString();
+        const userDataDir = path.join(contextsPath, browserId.concat('.ctx'));
 
-      const thirdPartyExtensionPaths = await Promise.all(
-        thirdPartyExtensions.map(extension => downloadExtension(extension.id))
-      );
+        const thirdPartyExtensionPaths = useThirdPartyExtensions
+          ? await Promise.all(
+              thirdPartyExtensions.map(extension =>
+                downloadExtension(extension.id)
+              )
+            )
+          : [];
 
-      const extensionsToLoad = [
-        extensionPath,
-        ...thirdPartyExtensionPaths,
-      ].join(',');
+        const extensionsToLoad = [
+          extensionPath,
+          ...thirdPartyExtensionPaths,
+        ].join(',');
 
-      const extensionArgs = [
-        `--disable-extensions-except=${extensionsToLoad}`,
-        `--load-extension=${extensionsToLoad}`,
-      ];
+        const extensionArgs = [
+          `--disable-extensions-except=${extensionsToLoad}`,
+          `--load-extension=${extensionsToLoad}`,
+        ];
 
-      const context = await chromium.launchPersistentContext(userDataDir, {
-        args: [
-          '--window-size=320x240',
-          //'--ignore-certificate-errors',
-          ...extensionArgs,
-          '--no-sandbox',
-          // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
-          '--noerrdialogs',
-          // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
-          '--enable-logging',
-          '--v=1',
-        ],
-        headless: false,
-        permissions: [],
-      });
+        const context = await chromium.launchPersistentContext(userDataDir, {
+          args: [
+            '--window-size=320x240',
+            //'--ignore-certificate-errors',
+            ...extensionArgs,
+            '--no-sandbox',
+            // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
+            '--noerrdialogs',
+            // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
+            '--enable-logging',
+            '--v=1',
+          ],
+          headless: false,
+          permissions: [],
+        });
 
-      context.setDefaultTimeout(5000);
+        context.setDefaultTimeout(10_000);
 
-      await waitForExtensions(context);
+        await waitForExtensions(context);
 
-      const extensionId = getExtensionId(context);
-      const websiteProcess = await startWebsite(extensionId);
+        const extensionId = getExtensionId(context);
+        const websiteProcess = await startWebsite(extensionId);
 
-      await waitForWebsite();
+        await waitForWebsite();
 
-      for (const extension of thirdPartyExtensions) {
-        await extension.install?.(context, extensionId);
-      }
+        for (const extension of thirdPartyExtensions) {
+          await extension.install?.(context, extensionId);
+        }
 
-      await use(context);
-      await context.close();
-      websiteProcess.kill();
-    },
-    {
-      scope: 'test',
-    },
-  ],
-});
+        await use(context);
+        await context.close();
+        websiteProcess.kill();
+      },
+      {
+        scope: 'test',
+      },
+    ],
+  });
+}
+
+export const extensionTest = createExtensionTest();
+export const extensionWithThirdPartyTest = createExtensionTest(true);
