@@ -3,7 +3,6 @@ import fetch from 'node-fetch';
 import * as path from 'path';
 import { wait } from './wait';
 import * as https from 'https';
-import ora from 'ora';
 
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
@@ -18,8 +17,6 @@ export async function startWebsite(extensionId: string) {
 }
 
 export async function waitForWebsite() {
-  const spinner = ora('Waiting for website...').start();
-
   const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
   });
@@ -35,8 +32,6 @@ export async function waitForWebsite() {
       });
 
       if (response.ok) {
-        spinner.succeed();
-
         return true;
       }
     } catch (error) {

@@ -7,7 +7,6 @@ import { thirdPartyExtensions } from './extensionsList';
 import { getExtensionPath } from './paths';
 import { getExtensionId } from './url';
 import { startWebsite, waitForWebsite } from './website';
-import ora from 'ora';
 
 const extensionPath = getExtensionPath();
 const contextsPath = path.resolve(__dirname, 'contexts');
@@ -27,9 +26,7 @@ export const extensionTest = test.extend<{}>({
       const userDataDir = path.join(contextsPath, browserId.concat('.ctx'));
 
       const thirdPartyExtensionPaths = await Promise.all(
-        thirdPartyExtensions.map(extension =>
-          downloadExtension(extension.id, extension.name)
-        )
+        thirdPartyExtensions.map(extension => downloadExtension(extension.id))
       );
 
       const extensionsToLoad = [
@@ -69,16 +66,7 @@ export const extensionTest = test.extend<{}>({
       await waitForWebsite();
 
       for (const extension of thirdPartyExtensions) {
-        const spinner = ora(`Installing ${extension.name}...`).start();
-
-        await extension
-          .install?.(context, extensionId)
-          .then(() => spinner.succeed())
-          .catch(error => {
-            spinner.fail();
-
-            throw error;
-          });
+        await extension.install?.(context, extensionId);
       }
 
       await use(context);
