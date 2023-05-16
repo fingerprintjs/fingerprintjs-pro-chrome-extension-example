@@ -8,6 +8,7 @@ dotenv.config({
 const isCi = process.env.CI === 'true';
 
 const config: PlaywrightTestConfig = {
+  fullyParallel: false,
   retries: isCi ? 3 : 0,
   workers: 1,
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
