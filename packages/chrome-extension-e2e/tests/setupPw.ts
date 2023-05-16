@@ -73,9 +73,12 @@ export function createExtensionTest(useThirdPartyExtensions = false) {
           await extension.install?.(context, extensionId);
         }
 
-        await use(context);
-        await context.close();
-        websiteProcess.kill();
+        try {
+          await use(context);
+        } finally {
+          await context.close();
+          websiteProcess.kill();
+        }
       },
       {
         scope: 'test',
