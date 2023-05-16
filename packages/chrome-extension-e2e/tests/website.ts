@@ -7,8 +7,7 @@ import * as https from 'https';
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
 
-  execSync('yarn run website:build', {
-    stdio: 'inherit',
+  const result = execSync('yarn run website:build', {
     cwd: root,
     env: {
       ...process.env,
@@ -16,9 +15,16 @@ export async function startWebsite(extensionId: string) {
     },
   });
 
-  return exec('yarn run website:preview', {
+  console.log(result.toString());
+
+  const proc = exec('yarn run website:preview', {
     cwd: root,
   });
+
+  proc.stdout?.pipe(process.stdout);
+  proc.stderr?.pipe(process.stderr);
+
+  return proc;
 }
 
 export async function waitForWebsite() {
