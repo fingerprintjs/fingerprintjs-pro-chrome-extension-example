@@ -1,14 +1,23 @@
 import * as FpJS from '@fingerprintjs/fingerprintjs-pro';
 import { showVersion } from './version';
 
+const heading = document.querySelector('.heading')!;
+
 showVersion(document.querySelector('.version')!);
 
-const extensionIds = (process.env.EXTENSION_IDS ?? '').split(',');
+const extensionIds = (import.meta.env.VITE_EXTENSION_IDS ?? '').split(
+  ','
+) as string[];
 
 const isChromeApiAvailable = () =>
   typeof chrome?.runtime?.sendMessage === 'function';
 
 const isIframe = () => window.parent !== window;
+
+function setError(message: string) {
+  heading.textContent = message;
+  heading.classList.add('error');
+}
 
 function sendMessage(msg: string, data: any) {
   const message = {
@@ -33,19 +42,25 @@ function sendMessage(msg: string, data: any) {
 }
 
 async function main() {
-  const heading = document.querySelector('.heading')!;
+  const apiKey = import.meta.env.VITE_API_KEY as string;
+
+  if (!apiKey) {
+    setError('API key is not provided, please check your .env file.');
+
+    return;
+  }
 
   if (!isChromeApiAvailable() && !isIframe()) {
-    heading.textContent =
-      'Looks like chrome API is not available, you might need to switch to chromium based browser.';
-    heading.classList.add('error');
+    setError(
+      'Looks like chrome API is not available, you might need to switch to chromium based browser.'
+    );
 
     return;
   }
 
   const fp = await FpJS.load({
-    apiKey: process.env.API_KEY as string,
-    endpoint: process.env.API_ENDPOINT,
+    apiKey: apiKey,
+    endpoint: import.meta.env.VITE_API_ENDPOINT,
   });
 
   const result = await fp.get({

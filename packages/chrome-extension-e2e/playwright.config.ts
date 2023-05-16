@@ -5,8 +5,10 @@ dotenv.config({
   path: '../../.env',
 });
 
+const isCi = process.env.CI === 'true';
+
 const config: PlaywrightTestConfig = {
-  retries: 3,
+  retries: isCi ? 3 : 0,
   workers: 1,
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,

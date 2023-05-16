@@ -83,7 +83,7 @@ After cloning the repository perform these operations:
 - Run `yarn install` to install dependencies.
 - Copy `.env.dist` to `.env` and provide your FingerprintJS Public `API_KEY`.
   - If you want to develop the extension locally, you also need to set `WEBSITE_URL=https://localhost:8080/`.
-  - You will also need to set the `EXTENSION_IDS`, we will get back to it late.
+  - You will also need to set the `VITE_EXTENSION_IDS`, we will get back to it late.
 - Run `yarn extension:watch` to build the extension on changes.
 - Install the unpacked extension in your browser. To do that:
   - Head to `chrome://extensions/` page in your browser.
@@ -91,7 +91,7 @@ After cloning the repository perform these operations:
   - Select `packages/chrome-extension/build` directory.
   - You should see the **FingerprintJS Example Browser Extension** extension, make sure that it is activated.
   - Copy the `extension ID`: ![](resources/extension_id.png)
-  - Paste it into `.env` as `EXTENSION_IDS`. It is needed, so that the **website** can communicate with the extension.
+  - Paste it into `.env` as `VITE_EXTENSION_IDS`. It is needed, so that the **website** can communicate with the extension.
 - Run `yarn website:start` to run the website.
   - **Note**: Required `chrome` API for **New window** strategy is not available on pages that are not served via `HTTPS`, so the website is served on `https://localhost:8080/`. You can safely ignore the warning regarding the certificate.
   - In order to use the [Custom subdomain](https://dev.fingerprint.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.

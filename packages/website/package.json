@@ -4,8 +4,9 @@
   "private": true,
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
+    "start": "vite --port=8080",
+    "build": "vite build",
+    "preview": "vite preview --port=8080",
     "release": "semantic-release",
     "release-dry": "semantic-release --dry-run"
   },

@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
 import fetch from 'node-fetch';
 import * as path from 'path';
 import { wait } from './wait';
@@ -7,12 +7,17 @@ import * as https from 'https';
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
 
-  return exec('yarn run website:start', {
+  execSync('yarn run website:build', {
+    stdio: 'inherit',
     cwd: root,
     env: {
       ...process.env,
-      EXTENSION_IDS: extensionId,
+      VITE_EXTENSION_IDS: extensionId,
     },
+  });
+
+  return exec('yarn run website:preview', {
+    cwd: root,
   });
 }
 

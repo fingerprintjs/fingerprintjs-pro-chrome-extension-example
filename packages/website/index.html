@@ -4,7 +4,6 @@
   <meta charset='utf-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' />
   <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-  <link rel='shortcut icon' href="<%=require('./favicon.ico').default%>" type='image/x-icon'>
   <title>User Verification</title>
   <style>
       /* The full-height solution for IE 11 is taken from https://gist.github.com/palicko/26b327cd2198e52c25b13485b4dd02bc */
@@ -148,7 +147,7 @@
 <main class='content'>
 
   <div class='outputHolder'>
-    <img class='logo' src="<%=require('./logo.png').default%>" alt='Logo'>
+    <img class='logo' src="/logo.png" alt='Logo'>
     <section class='output'>
       <div class='heading'>Getting the visitor identifier...</div>
     </section>
@@ -158,5 +157,5 @@
 
 </footer>
 </body>
-
+<script type="module" src='./src/index.ts'></script>
 </html>

@@ -20,7 +20,9 @@ async function getAndCheckResult(page: Page | ElementHandle) {
 
   while (true) {
     try {
-      const result = await page.waitForSelector('.result');
+      const result = await page.waitForSelector('.result', {
+        timeout: 20_000,
+      });
       const textContent = await result.textContent();
 
       if (textContent?.startsWith('Your visitorId')) {
