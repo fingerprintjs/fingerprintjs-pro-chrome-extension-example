@@ -42,7 +42,7 @@ export const extensionTest = test.extend<{}>({
       const context = await chromium.launchPersistentContext(userDataDir, {
         args: [
           '--window-size=320x240',
-          '--ignore-certificate-errors',
+          //'--ignore-certificate-errors',
           ...extensionArgs,
           '--no-sandbox',
           // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
@@ -52,7 +52,6 @@ export const extensionTest = test.extend<{}>({
           '--v=1',
         ],
         headless: false,
-        bypassCSP: true,
         permissions: [],
       });
 
