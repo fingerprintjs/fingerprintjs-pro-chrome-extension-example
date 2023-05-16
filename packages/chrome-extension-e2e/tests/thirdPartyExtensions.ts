@@ -3,7 +3,6 @@ import fetch from 'node-fetch';
 import * as path from 'path';
 import * as fs from 'fs';
 import AdmZip from 'adm-zip';
-import ora from 'ora';
 
 const extensionsPath = path.resolve(__dirname, '../thirdPartyExtensions');
 
@@ -28,9 +27,7 @@ async function crxToZip(data: ArrayBuffer) {
   return Buffer.from(data, zipStartOffset, data.byteLength - zipStartOffset);
 }
 
-export async function downloadExtension(extensionId: string, name: string) {
-  const spinner = ora(`Downloading ${name}`).start();
-
+export async function downloadExtension(extensionId: string) {
   if (!fs.existsSync(extensionsPath)) {
     fs.mkdirSync(extensionsPath);
   }
@@ -47,8 +44,6 @@ export async function downloadExtension(extensionId: string, name: string) {
   const zip = new AdmZip(buffer);
 
   zip.extractAllTo(extractPath, true);
-
-  spinner.succeed(`Downloaded ${name}`);
 
   return extractPath;
 }
