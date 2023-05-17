@@ -12,5 +12,9 @@ export default defineConfig({
     outDir: 'build',
   },
   server: { https: true },
-  plugins: [mkcert()],
+  plugins: [
+    mkcert({
+      source: 'coding',
+    }),
+  ],
 });
