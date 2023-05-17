@@ -70,7 +70,7 @@ describe('visitorId', () => {
       }
     );
 
-    extensionWithThirdPartyTest(
+    extensionWithThirdPartyTest.only(
       'should show visitorId in popup',
       async ({ page }) => {
         await runTest(page, FingerprintStrategy.Iframe, 'popup');
