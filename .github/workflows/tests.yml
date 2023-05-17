@@ -52,7 +52,6 @@ jobs:
         run: |
           echo "API_KEY=${{ secrets.API_KEY }}" >> .env
           echo "WEBSITE_URL=https://localhost:8080/" >> .env
-          echo "API_ENDPOINT=${{ secrets.API_ENDPOINT }}" >> .env
 
       - name: Build extension
         run: yarn extension:build
