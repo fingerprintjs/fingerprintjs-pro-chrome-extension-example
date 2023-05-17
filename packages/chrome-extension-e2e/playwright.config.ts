@@ -15,10 +15,10 @@ const config: PlaywrightTestConfig = {
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,
   webServer: {
-    port: 8080,
     command: 'yarn website:preview',
     cwd: path.resolve(__dirname, '../../'),
     reuseExistingServer: !isCi,
+    url: 'http://localhost:8080',
   },
 };
 
