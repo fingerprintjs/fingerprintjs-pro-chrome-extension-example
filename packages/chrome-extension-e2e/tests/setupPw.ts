@@ -56,6 +56,7 @@ export function createExtensionTest(useThirdPartyExtensions = false) {
             '--v=1',
           ],
           headless: false,
+          ignoreHTTPSErrors: true,
           permissions: [],
         });
 

@@ -5,11 +5,14 @@ import { getWebsiteURL } from '../website';
  * */
 export function iframeStrategy(container: Element) {
   const iframe = document.createElement('iframe');
+  const src = getWebsiteURL();
 
   iframe.style.width = '100%';
   iframe.style.height = '200px';
   iframe.style.border = 'none';
-  iframe.src = getWebsiteURL();
+  iframe.src = src;
+
+  console.info('Iframe src', src);
 
   return new Promise<string>(resolve => {
     const handler = (event: MessageEvent) => {
