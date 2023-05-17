@@ -58,6 +58,9 @@ jobs:
       - name: Build extension
         run: yarn extension:build
 
+      - name: Build website
+        run: yarn website:build
+
       - name: Run tests
         uses: GabrielBB/xvfb-action@86d97bde4a65fe9b290c0b3fb92c2c4ed0e5302d
         env:
