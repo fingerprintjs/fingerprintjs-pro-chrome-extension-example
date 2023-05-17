@@ -10,6 +10,9 @@ const config: PlaywrightTestConfig = {
   workers: 1,
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,
+  use: {
+    trace: 'on-first-retry',
+  },
   fullyParallel: false,
 };
 

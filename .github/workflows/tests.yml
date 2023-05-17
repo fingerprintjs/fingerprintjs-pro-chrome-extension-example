@@ -61,6 +61,13 @@ jobs:
         with:
           run: yarn extension:e2e
 
+      - name: Upload trace
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Trace (OS ${{ matrix.os }})
+          path: packages/chrome-extension-e2e/test-results
+
       - name: Upload Unit Test Results
         if: always()
         uses: actions/upload-artifact@v2
