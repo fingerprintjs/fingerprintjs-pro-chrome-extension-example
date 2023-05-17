@@ -21,8 +21,8 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
-          echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
+          echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "VITE_WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
 
       - name: Build extension
         run: yarn extension:zip

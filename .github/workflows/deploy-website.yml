@@ -25,9 +25,8 @@ jobs:
       - name: Build website
         run: yarn run website:build
         env:
-          API_KEY: ${{ secrets.API_KEY }}
-          EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}
-          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          VITE_API_KEY: ${{ secrets.API_KEY }}
+          VITE_EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@8817a56e5bfec6e2b08345c81f4d422db53a2cdc

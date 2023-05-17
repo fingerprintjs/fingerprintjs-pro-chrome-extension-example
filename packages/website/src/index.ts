@@ -43,7 +43,6 @@ function sendMessage(msg: string, data: any) {
       return;
     }
 
-    // TODO - Run one website process during tests and pass extension id in query somehow
     getExtensionIds().forEach(extensionId =>
       chrome.runtime.sendMessage(extensionId, message)
     );

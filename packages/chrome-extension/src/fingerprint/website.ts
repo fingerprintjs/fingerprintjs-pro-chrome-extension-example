@@ -1,5 +1,5 @@
 export function getWebsiteURL() {
-  const baseUrl = process.env.WEBSITE_URL;
+  const baseUrl = import.meta.env.VITE_WEBSITE_URL;
 
   if (!baseUrl) {
     throw new Error('WEBSITE_URL is not provided in .env file');
@@ -7,7 +7,7 @@ export function getWebsiteURL() {
 
   const url = new URL(baseUrl);
 
-  if (process.env.ADD_EXTENSION_ID_TO_URL === 'true') {
+  if (import.meta.env.VITE_ADD_EXTENSION_ID_TO_URL === 'true') {
     const extensionId = chrome.runtime.id;
 
     if (!extensionId) {

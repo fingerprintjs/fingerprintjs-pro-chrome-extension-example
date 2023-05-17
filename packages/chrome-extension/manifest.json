@@ -4,10 +4,10 @@
   "version": "0.0.3",
   "manifest_version": 3,
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "index.html"
   },
   "icons": {
-    "128": "assets/logo.png"
+    "128": "logo.png"
   },
   "content_scripts": [
     {
@@ -16,7 +16,8 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
@@ -29,8 +30,14 @@
   "permissions": ["background", "scripting"],
   "web_accessible_resources": [
     {
-      "resources": ["assets/*"],
-      "matches": ["*://*/*"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "**/*",
+        "*"
+      ],
+      "use_dynamic_url": true
     }
   ],
   "version_name": "0.0.2"

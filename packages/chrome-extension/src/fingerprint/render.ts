@@ -6,7 +6,7 @@ interface State {
   strategy: FingerprintStrategy;
 }
 
-const logo = chrome.runtime.getURL('assets/logo.png');
+const logo = chrome.runtime.getURL('logo.png');
 
 export function renderFingerprintSection(target: Element) {
   target.innerHTML = `

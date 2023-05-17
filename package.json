@@ -36,9 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "adm-zip": "^0.5.9",
-    "clean-webpack-plugin": "^4.0.0",
     "commitizen": "^4.2.4",
-    "copy-webpack-plugin": "^10.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.40.0",
@@ -46,20 +44,16 @@
     "eslint-plugin-prettier": "^4.2.1",
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
-    "html-webpack-plugin": "^5.5.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "semantic-release": "19.0.3",
     "semantic-release-monorepo": "7.0.5",
-    "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.4.2",
     "typescript": "5.0.4",
     "vite": "^4.3.6",
     "vite-plugin-mkcert": "^1.15.0",
-    "webpack": "5.76.0",
-    "webpack-cli": "^5.1.1",
-    "webpack-dev-server": "^4.15.0"
+    "vite-plugin-static-copy": "^0.15.0"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.8.1"
