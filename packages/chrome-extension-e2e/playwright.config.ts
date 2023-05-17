@@ -1,5 +1,6 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 import dotenv from 'dotenv';
+import * as path from 'path';
 
 dotenv.config({
   path: '../../.env',
@@ -13,6 +14,12 @@ const config: PlaywrightTestConfig = {
   workers: 1,
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,
+  webServer: {
+    port: 8080,
+    command: 'yarn website:preview',
+    cwd: path.resolve(__dirname, '../../'),
+    reuseExistingServer: !isCi,
+  },
 };
 
 export default config;

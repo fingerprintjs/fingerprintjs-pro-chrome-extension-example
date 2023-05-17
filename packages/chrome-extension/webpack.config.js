@@ -111,7 +111,11 @@ module.exports = (env, { mode }) => {
         ],
       }),
 
-      new webpack.EnvironmentPlugin(['API_KEY', 'WEBSITE_URL']),
+      new webpack.EnvironmentPlugin([
+        'API_KEY',
+        'WEBSITE_URL',
+        'ADD_EXTENSION_ID_TO_URL',
+      ]),
 
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src', 'popup.html'),

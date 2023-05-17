@@ -6,7 +6,6 @@ import { downloadExtension } from './thirdPartyExtensions';
 import { thirdPartyExtensions } from './extensionsList';
 import { getExtensionPath } from './paths';
 import { getExtensionId } from './url';
-import { startWebsite, waitForWebsite } from './website';
 
 const extensionPath = getExtensionPath();
 const contextsPath = path.resolve(__dirname, 'contexts');
@@ -65,9 +64,6 @@ export function createExtensionTest(useThirdPartyExtensions = false) {
         await waitForExtensions(context);
 
         const extensionId = getExtensionId(context);
-        const websiteProcess = await startWebsite(extensionId);
-
-        await waitForWebsite();
 
         for (const extension of thirdPartyExtensions) {
           await extension.install?.(context, extensionId);
@@ -77,7 +73,6 @@ export function createExtensionTest(useThirdPartyExtensions = false) {
           await use(context);
         } finally {
           await context.close();
-          websiteProcess.kill();
         }
       },
       {

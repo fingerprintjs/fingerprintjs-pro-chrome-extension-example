@@ -54,6 +54,7 @@ jobs:
           echo "API_KEY=${{ secrets.API_KEY }}" >> .env
           echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> .env
           echo "WEBSITE_URL=https://localhost:8080/" >> .env
+          echo "ADD_EXTENSION_ID_TO_URL=true" >> .env
 
       - name: Build extension
         run: yarn extension:build

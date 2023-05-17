@@ -5,10 +5,6 @@ const heading = document.querySelector('.heading')!;
 
 showVersion(document.querySelector('.version')!);
 
-const extensionIds = (import.meta.env.VITE_EXTENSION_IDS ?? '').split(
-  ','
-) as string[];
-
 const isChromeApiAvailable = () =>
   typeof chrome?.runtime?.sendMessage === 'function';
 
@@ -17,6 +13,18 @@ const isIframe = () => window.parent !== window;
 function setError(message: string) {
   heading.textContent = message;
   heading.classList.add('error');
+}
+
+function getExtensionIds() {
+  const extensionIds = (import.meta.env.VITE_EXTENSION_IDS ?? '').split(
+    ','
+  ) as string[];
+
+  const search = new URLSearchParams(location.search);
+
+  const extensionIdsFromQuery = search.get('extensionIds')?.split(',') ?? [];
+
+  return [...extensionIds, ...extensionIdsFromQuery];
 }
 
 function sendMessage(msg: string, data: any) {
@@ -35,7 +43,8 @@ function sendMessage(msg: string, data: any) {
       return;
     }
 
-    extensionIds.forEach(extensionId =>
+    // TODO - Run one website process during tests and pass extension id in query somehow
+    getExtensionIds().forEach(extensionId =>
       chrome.runtime.sendMessage(extensionId, message)
     );
   }

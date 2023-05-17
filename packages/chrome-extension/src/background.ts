@@ -1,4 +1,5 @@
 import { Message } from './types';
+import { getWebsiteURL } from './fingerprint/website';
 
 let currentWindow: chrome.windows.Window | undefined;
 
@@ -18,7 +19,7 @@ async function getFingerprint() {
   await closeCurrentWindow();
 
   currentWindow = await chrome.windows.create({
-    url: process.env.WEBSITE_URL as string,
+    url: getWebsiteURL(),
     type: 'popup',
     focused: false,
   });
