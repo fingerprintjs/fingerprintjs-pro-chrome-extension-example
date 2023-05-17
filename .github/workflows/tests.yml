@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -67,6 +67,13 @@ jobs:
           CI: true
         with:
           run: yarn extension:e2e
+
+      - name: Upload trace
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Trace (OS ${{ matrix.os }})
+          path: packages/chrome-extension-e2e/test-results
 
       - name: Upload Unit Test Results
         if: always()

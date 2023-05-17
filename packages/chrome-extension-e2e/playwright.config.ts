@@ -15,6 +15,9 @@ const config: PlaywrightTestConfig = {
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,
   globalSetup: path.resolve(__dirname, './tests/setup.ts'),
+  use: {
+    trace: 'on-first-retry',
+  },
 };
 
 export default config;
