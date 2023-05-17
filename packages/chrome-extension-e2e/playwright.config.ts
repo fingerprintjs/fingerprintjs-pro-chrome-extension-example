@@ -14,12 +14,7 @@ const config: PlaywrightTestConfig = {
   workers: 1,
   reporter: [['junit', { outputFile: 'reports/report.xml' }]],
   timeout: 60_000,
-  webServer: {
-    command: 'yarn website:preview',
-    cwd: path.resolve(__dirname, '../../'),
-    reuseExistingServer: !isCi,
-    url: 'http://localhost:8080',
-  },
+  globalSetup: path.resolve(__dirname, './tests/setup.ts'),
 };
 
 export default config;
