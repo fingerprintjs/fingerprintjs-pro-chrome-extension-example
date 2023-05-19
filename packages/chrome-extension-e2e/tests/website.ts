@@ -7,13 +7,16 @@ import * as https from 'https';
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
 
-  return exec('yarn run website:start', {
+  const proc = exec('yarn run website:start', {
     cwd: root,
     env: {
       ...process.env,
       EXTENSION_IDS: extensionId,
     },
   });
+
+  proc.stdout?.pipe(process.stdout);
+  proc.stderr?.pipe(process.stderr);
 }
 
 export async function waitForWebsite() {
@@ -23,19 +26,21 @@ export async function waitForWebsite() {
     rejectUnauthorized: false,
   });
 
-  await wait(1500);
+  const websiteUrl = process.env.WEBSITE_URL as string;
 
   while (true) {
     if (attempts > 0) {
-      console.log(`Waiting for website to be ready... (${attempts})`);
+      console.log(
+        `Waiting for website to be ready at ${websiteUrl}... (${attempts})`
+      );
     }
 
     try {
-      const websiteUrl = process.env.WEBSITE_URL as string;
-
       const response = await fetch(websiteUrl, {
         agent: httpsAgent,
       });
+
+      console.log(`Response status code: ${response.status}`);
 
       if (response.ok) {
         return true;
