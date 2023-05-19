@@ -44,7 +44,6 @@ module.exports = (env, { mode = 'development' }) => ({
     path: outDir,
   },
   devServer: {
-    host: '0.0.0.0',
     https: true,
   },
   plugins: [
