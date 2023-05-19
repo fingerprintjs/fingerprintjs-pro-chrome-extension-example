@@ -17,6 +17,8 @@ export async function startWebsite(extensionId: string) {
 
   proc.stdout?.pipe(process.stdout);
   proc.stderr?.pipe(process.stderr);
+
+  return proc;
 }
 
 export async function waitForWebsite() {

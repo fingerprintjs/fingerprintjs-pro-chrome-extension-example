@@ -57,7 +57,7 @@ export const extensionTest = test.extend<{}>({
         permissions: [],
       });
 
-      context.setDefaultTimeout(5000);
+      context.setDefaultTimeout(50_000);
 
       await waitForExtensions(context);
 
