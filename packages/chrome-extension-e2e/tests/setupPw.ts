@@ -53,6 +53,7 @@ export const extensionTest = test.extend<{}>({
         ],
         headless: false,
         bypassCSP: true,
+        ignoreHTTPSErrors: true,
         permissions: [],
       });
 
