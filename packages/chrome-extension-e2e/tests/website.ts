@@ -3,45 +3,55 @@ import fetch from 'node-fetch';
 import * as path from 'path';
 import { wait } from './wait';
 import * as https from 'https';
-import ora from 'ora';
 
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
 
-  return exec('yarn run website:start', {
+  const proc = exec('yarn run website:start', {
     cwd: root,
     env: {
       ...process.env,
       EXTENSION_IDS: extensionId,
     },
   });
+
+  proc.stdout?.pipe(process.stdout);
+  proc.stderr?.pipe(process.stderr);
+
+  return proc;
 }
 
 export async function waitForWebsite() {
-  const spinner = ora('Waiting for website...').start();
+  let attempts = 0;
 
   const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
   });
 
-  await wait(1500);
+  const websiteUrl = process.env.WEBSITE_URL as string;
 
   while (true) {
-    try {
-      const websiteUrl = process.env.WEBSITE_URL as string;
+    if (attempts > 0) {
+      console.log(
+        `Waiting for website to be ready at ${websiteUrl}... (${attempts})`
+      );
+    }
 
+    try {
       const response = await fetch(websiteUrl, {
         agent: httpsAgent,
       });
 
-      if (response.ok) {
-        spinner.succeed();
+      console.log(`Response status code: ${response.status}`);
 
+      if (response.ok) {
         return true;
       }
     } catch (error) {
-      // Nothing here
+      console.error(error);
     }
+
+    attempts++;
 
     await wait(1000);
   }

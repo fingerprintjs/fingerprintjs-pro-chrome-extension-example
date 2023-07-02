@@ -52,7 +52,6 @@ jobs:
         run: |
           echo "API_KEY=${{ secrets.API_KEY }}" >> .env
           echo "WEBSITE_URL=https://localhost:8080/" >> .env
-          echo "API_ENDPOINT=${{ secrets.API_ENDPOINT }}" >> .env
 
       - name: Build extension
         run: yarn extension:build
@@ -61,6 +60,13 @@ jobs:
         uses: GabrielBB/xvfb-action@86d97bde4a65fe9b290c0b3fb92c2c4ed0e5302d
         with:
           run: yarn extension:e2e
+
+      - name: Upload trace
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Trace (OS ${{ matrix.os }})
+          path: packages/chrome-extension-e2e/test-results
 
       - name: Upload Unit Test Results
         if: always()

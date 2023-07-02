@@ -6,9 +6,4 @@ export interface ExtensionDefinition {
   name: string;
 }
 
-export const thirdPartyExtensions: ExtensionDefinition[] = [
-  {
-    id: 'cjpalhdlnbpafiamejdnhcphjbkeiagm',
-    name: 'uBlock',
-  },
-];
+export const thirdPartyExtensions: ExtensionDefinition[] = [];
