@@ -26,31 +26,40 @@
 
 # FingerprintJS Pro Chrome Extension Example
 
+Fingerprint is a device intelligence platform offering 99.5% accurate visitor identification.
+
 This repository contains an example Chrome extension that uses the FingerprintJS FingerprintJS Pro JavaScript agent.
+
+## Requirements
+
+- Chromium based browser (Chrome, Edge, Opera, etc.)
+
+## Installation
+
 You can install the example chrome extension from [Chrome Web Store](https://chrome.google.com/webstore/detail/fingerprintjs-example-bro/knppbjgkegnlbhddedbilnfmnkdocekn).
 
-### Why it exists
+## Why it exists
 
 The Chrome extension environment has limited capabilities for external scripts running within content scripts. This repository showcases different strategies on how FingeprintJS Pro can be used in this ecosystem. 
 
-### How it works
+## How it works
 
 The solution is split into two parts - **chrome-extension** and **website**.
 
-#### Website
+### Website
 
 The website uses the FingerprintJS Pro JavaScript agent as it normally would, and communicates with the Chrome extension.
 It is hosted on [Github Pages](https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/).
 
-#### Chrome Extension
+### Chrome Extension
 
 Provides sample extension that consists of popup page, background, and content script.
 
-### Strategies
+## Strategies
 
 This repository contains two strategies that make our FingerprintJS Pro JavaScript agent work in the Chrome extension environment.
 
-#### New window
+### New window
 
 When the extension needs to obtain data from the FingerprintJS Pro JavaScript agent, it creates a new window (via `chrome.windows.create`) with the URL of the **website** and waits for a message from it.
 
@@ -64,7 +73,7 @@ When the extension needs to obtain data from the FingerprintJS Pro JavaScript ag
 
 This strategy can be found in `packages/chrome-extension/src/fingerprint/strategies/newWindow.strategy.ts`.
 
-#### Iframe
+### Iframe
 
 1. We append an iframe to the DOM of a currently open page in the browser with the URL of the **website**. It can be used in the extension popup as well.
 2. The **website** uses the FingerprintJS Pro JavaScript agent to obtain data, and passes it back to the parent window via `window.parent.postMessage`.
@@ -76,7 +85,7 @@ This strategy can be found in `packages/chrome-extension/src/fingerprint/strateg
 
 **Note:** Implementation of both of these strategies is not perfect, ideally they should also handle time-out scenarios and connection issues with the website. It was decided to leave it out to keep it simple.
 
-### Development
+## Development
 
 After cloning the repository perform these operations:
 
