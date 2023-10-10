@@ -38,24 +38,19 @@ This repository contains an example Chrome extension that uses the Fingerprint P
 
 You can install the example chrome extension from [Chrome Web Store](https://chrome.google.com/webstore/detail/fingerprintjs-example-bro/knppbjgkegnlbhddedbilnfmnkdocekn).
 
-## Why it exists
-
-The Chrome extension environment has limited capabilities for external scripts running within content scripts. This repository showcases different strategies on how FingeprintJS Pro can be used in this ecosystem. 
-
 ## How it works
 
+The Chrome extension environment has limited capabilities for external scripts running within content scripts.
 The solution is split into two parts - **chrome-extension** and **website**.
 
-### Website
+## Website
 
 The website uses the Fingerprint Pro JavaScript agent as it normally would, and communicates with the Chrome extension.
 It is hosted on [Github Pages](https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/).
 
-### Chrome Extension
+## Chrome Extension
 
 Provides a sample extension that consists of a popup page, background, and content script.
-
-## Strategies
 
 This repository contains two strategies that make our FingerprintJS Pro JavaScript agent work in the Chrome extension environment.
 
@@ -104,3 +99,10 @@ After cloning the repository perform these operations:
 - Run `yarn website:start` to run the website.
   - **Note**: Required `chrome` API for **New window** strategy is not available on pages that are not served via `HTTPS`, so the website is served on `https://localhost:8080/`. You can safely ignore the warning regarding the certificate.
   - In order to use the [Custom subdomain](https://dev.fingerprint.com/docs/subdomain-integration) set `API_ENDPOINT=YOUR_API_ENDPOINT` in `.env`.
+
+## Support and feedback
+To ask questions or provide feedback, use [Issues](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/issues). If you need private support, please email us at `oss-support@fingerprint.com`.
+
+
+## License
+This project is licensed under the MIT license. See the [LICENSE](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/blob/main/LICENSE) file for more info.
