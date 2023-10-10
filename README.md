@@ -24,11 +24,11 @@
   </a>
 </p>
 
-# FingerprintJS Pro Chrome Extension Example
+# Fingerprint Pro Chrome Extension Example
 
 Fingerprint is a device intelligence platform offering 99.5% accurate visitor identification.
 
-This repository contains an example Chrome extension that uses the FingerprintJS FingerprintJS Pro JavaScript agent.
+This repository contains an example Chrome extension that uses the Fingerprint Pro JavaScript agent.
 
 ## Requirements
 
@@ -48,12 +48,12 @@ The solution is split into two parts - **chrome-extension** and **website**.
 
 ### Website
 
-The website uses the FingerprintJS Pro JavaScript agent as it normally would, and communicates with the Chrome extension.
+The website uses the Fingerprint Pro JavaScript agent as it normally would, and communicates with the Chrome extension.
 It is hosted on [Github Pages](https://fingerprintjs.github.io/fingerprintjs-pro-chrome-extension-example/).
 
 ### Chrome Extension
 
-Provides sample extension that consists of popup page, background, and content script.
+Provides a sample extension that consists of a popup page, background, and content script.
 
 ## Strategies
 
