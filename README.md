@@ -32,7 +32,7 @@ This repository contains an example Chrome extension that uses the Fingerprint P
 
 ## Requirements
 
-- Chromium based browser (Chrome, Edge, Opera, etc.)
+- Chromium-based browser (Chrome, Edge, Opera, etc.)
 
 ## Installation
 
