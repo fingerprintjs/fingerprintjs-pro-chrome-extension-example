@@ -32,9 +32,10 @@ export async function waitForWebsite() {
     try {
       const response = await fetch(websiteUrl)
 
-      console.log(`Response status code: ${response.status}`)
+      console.log(`Response status code: ${response.status}. Is ok: ${response.ok}`)
 
       if (response.ok) {
+        console.log(`Website is ready at ${websiteUrl}`)
         return true
       }
     } catch (error) {
