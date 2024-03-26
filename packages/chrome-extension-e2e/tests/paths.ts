@@ -1,4 +1,3 @@
-import * as path from 'path';
+import * as path from 'path'
 
-export const getExtensionPath = () =>
-  path.resolve(__dirname, '../../chrome-extension/build');
+export const getExtensionPath = () => path.resolve(__dirname, '../../chrome-extension/build')

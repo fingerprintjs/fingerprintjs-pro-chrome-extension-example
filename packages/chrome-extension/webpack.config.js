@@ -1,24 +1,24 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const dotenv = require('dotenv');
-const fs = require('fs');
-const packageJson = require('./package.json');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const dotenv = require('dotenv')
+const fs = require('fs')
+const packageJson = require('./package.json')
 
-const outDir = path.resolve(__dirname, 'build');
+const outDir = path.resolve(__dirname, 'build')
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
-});
+})
 
 function parseVersion(version) {
-  const safeVersion = version.split('-')[0];
+  const safeVersion = version.split('-')[0]
 
   return {
     version: safeVersion,
     versionName: version,
-  };
+  }
 }
 
 module.exports = (env, { mode }) => {
@@ -72,24 +72,22 @@ module.exports = (env, { mode }) => {
 
       // Apply website url and correct version to manifest
       {
-        apply: compiler => {
-          compiler.hooks.afterEmit.tap('AfterEmitPlugin', compilation => {
-            const { path: outPath } = compilation.outputOptions;
+        apply: (compiler) => {
+          compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
+            const { path: outPath } = compilation.outputOptions
 
-            const manifestPath = path.join(outPath, 'manifest.json');
-            const manifest = require(manifestPath);
+            const manifestPath = path.join(outPath, 'manifest.json')
+            const manifest = require(manifestPath)
 
-            manifest.externally_connectable.matches = [
-              `${process.env.WEBSITE_URL}*`,
-            ];
+            manifest.externally_connectable.matches = [`${process.env.WEBSITE_URL}*`]
 
-            const { version, versionName } = parseVersion(packageJson.version);
+            const { version, versionName } = parseVersion(packageJson.version)
 
-            manifest.version = version;
-            manifest.version_name = versionName;
+            manifest.version = version
+            manifest.version_name = versionName
 
-            fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-          });
+            fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2))
+          })
         },
       },
 
@@ -119,5 +117,5 @@ module.exports = (env, { mode }) => {
         chunks: ['popup'],
       }),
     ],
-  };
-};
+  }
+}

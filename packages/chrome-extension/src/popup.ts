@@ -1,5 +1,5 @@
-import { renderFingerprintSection } from './fingerprint/render';
+import { renderFingerprintSection } from './fingerprint/render'
 
-const main = document.querySelector('main')!;
+const main = document.querySelector('main')!
 
-renderFingerprintSection(main);
+renderFingerprintSection(main)

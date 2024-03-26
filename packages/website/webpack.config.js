@@ -1,14 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const dotenv = require('dotenv');
-const path = require('path');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const dotenv = require('dotenv')
+const path = require('path')
+const webpack = require('webpack')
 
-const outDir = path.resolve(__dirname, 'build');
+const outDir = path.resolve(__dirname, 'build')
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
-});
+})
 
 module.exports = (env, { mode = 'development' }) => ({
   entry: './src/index.ts',
@@ -64,4 +64,4 @@ module.exports = (env, { mode = 'development' }) => ({
 
     new webpack.EnvironmentPlugin(['API_KEY', 'EXTENSION_IDS']),
   ],
-});
+})
