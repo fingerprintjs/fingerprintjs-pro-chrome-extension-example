@@ -2,6 +2,10 @@
   "extends": "@fingerprintjs/tsconfig-dx-team/tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitReturns": false,
     "outDir": "./lib",
     "sourceMap": true,
     "declaration": false,
