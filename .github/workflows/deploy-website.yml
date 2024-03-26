@@ -20,10 +20,10 @@ jobs:
         uses: actions/setup-node@v2
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Build website
-        run: yarn run website:build
+        run: pnpm run website:build
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}

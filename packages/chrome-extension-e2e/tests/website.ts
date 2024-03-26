@@ -7,7 +7,7 @@ import * as https from 'https';
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..');
 
-  const proc = exec('yarn run website:start', {
+  const proc = exec('pnpm website:start', {
     cwd: root,
     env: {
       ...process.env,

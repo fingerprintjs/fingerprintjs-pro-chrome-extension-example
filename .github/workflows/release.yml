@@ -15,7 +15,7 @@ jobs:
           persist-credentials: false
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Create .env file
         run: |
@@ -24,10 +24,10 @@ jobs:
           echo "EXTENSION_IDS=${{ secrets.EXTENSION_IDS }}" >> .env
 
       - name: Build apps
-        run: yarn build
+        run: pnpm build
 
       - name: Release
-        run: yarn release
+        run: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
           HUSKY: 0
