@@ -1,5 +1,4 @@
 import { chromium } from 'playwright'
-import fetch from 'node-fetch'
 import * as path from 'path'
 import * as fs from 'fs'
 import AdmZip from 'adm-zip'

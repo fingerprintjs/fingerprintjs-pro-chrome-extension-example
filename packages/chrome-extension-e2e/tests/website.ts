@@ -1,8 +1,6 @@
 import { exec } from 'child_process'
-import fetch from 'node-fetch'
 import * as path from 'path'
 import { wait } from './wait'
-import * as https from 'https'
 
 export async function startWebsite(extensionId: string) {
   const root = path.resolve(__dirname, '../../..')
@@ -24,10 +22,6 @@ export async function startWebsite(extensionId: string) {
 export async function waitForWebsite() {
   let attempts = 0
 
-  const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-  })
-
   const websiteUrl = process.env.WEBSITE_URL as string
 
   while (true) {
@@ -36,9 +30,7 @@ export async function waitForWebsite() {
     }
 
     try {
-      const response = await fetch(websiteUrl, {
-        agent: httpsAgent,
-      })
+      const response = await fetch(websiteUrl)
 
       console.log(`Response status code: ${response.status}`)
 

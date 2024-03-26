@@ -30,7 +30,7 @@ jobs:
         run: pnpm install && pnpm list
 
       - name: Setup playwright
-        run: pnpm add playwright@latest -w --lockfile-only && pnpm dlx playwright install-deps && pnpm dlx playwright --version
+        run: pnpm add playwright -w --lockfile-only && pnpm exec playwright install-deps && pnpm exec playwright --version
 
       - name: Create .env file
         run: |
