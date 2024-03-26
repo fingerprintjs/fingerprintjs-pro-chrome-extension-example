@@ -12,6 +12,10 @@ dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 })
 
+dotenv.config({
+  path: path.resolve(__dirname, '../../.env.dist'),
+})
+
 function parseVersion(version) {
   const safeVersion = version.split('-')[0]
 

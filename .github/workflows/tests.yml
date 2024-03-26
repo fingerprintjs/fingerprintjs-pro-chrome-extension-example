@@ -5,32 +5,9 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  test:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: nodemodules-${{ hashFiles('pnpm.lock') }}
-          restore-keys: nodemodules-
-
-      - name: Install Node packages
-        run: pnpm install
-
-      - name: Create .env file
-        run: cp .env.dist .env
-
-      - name: Build
-        run: pnpm build
-
-      - name: Lint
-        run: pnpm lint
-
+  build-and-check:
+    name: Build project and run CI checks
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/build-typescript-project.yml@v1
   chrome-extension-e2e:
     name: Chrome extension e2e tests
     strategy:
@@ -40,13 +17,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@129abb77bf5884e578fcaf1f37628e41622cc371
+        with:
+          version: 8
 
       - name: Install dependencies
         run: pnpm install && pnpm list
 
       - name: Setup playwright
-        run: pnpm upgrade --pattern playwright --pure-lockfile && npx playwright install-deps && npx playwright --version
+        run: pnpm upgrade --pattern playwright --pure-lockfile && npx playwright install-deps && pnpm exec playwright --version
 
       - name: Create .env file
         run: |

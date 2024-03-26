@@ -18,6 +18,8 @@
     "build": "pnpm website:build && pnpm extension:build",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore --max-warnings 0 .",
     "lint:fix": "pnpm lint --fix",
+    "test": "echo \"No unit tests \"",
+    "test:dts": "echo \"No dts tests \"",
     "release": "pnpm website:release && pnpm extension:release"
   },
   "author": "",
