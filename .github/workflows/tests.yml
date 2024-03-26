@@ -29,8 +29,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install && pnpm list
 
+      - name: Install latest playwright
+        run: pnpm add playwright -w --lockfile-only
+
       - name: Setup playwright
-        run: pnpm add playwright -w --lockfile-only && pnpm exec playwright install-deps && pnpm exec playwright --version
+        run: pnpm exec playwright install
+
+      - name: Print playwright version
+        run: pnpm exec playwright --version
 
       - name: Create .env file
         run: |
