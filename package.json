@@ -48,8 +48,8 @@
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.1",
     "husky": "^8.0.3",
-    "playwright": "latest",
     "lint-staged": "^13.2.2",
+    "playwright": "latest",
     "semantic-release": "19.0.3",
     "semantic-release-monorepo": "7.0.5",
     "terser-webpack-plugin": "^5.3.1",
@@ -62,6 +62,7 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.8.1",
     "@types/node": "^20.11.30",
+    "cross-env": "^7.0.3",
     "tslib": "^2.6.2"
   },
   "config": {
