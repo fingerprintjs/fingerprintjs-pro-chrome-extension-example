@@ -44,7 +44,7 @@ module.exports = (env, { mode = 'development' }) => ({
     path: outDir,
   },
   devServer: {
-    https: true,
+    server: 'https',
   },
   plugins: [
     new CleanWebpackPlugin(),
