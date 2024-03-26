@@ -33,8 +33,5 @@
       ],
       "@semantic-release/github"
     ]
-  },
-  "devDependencies": {
-    "chrome-webstore-upload": "^1.0.0"
   }
 }

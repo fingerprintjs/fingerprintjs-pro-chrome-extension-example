@@ -60,9 +60,13 @@ export const extensionTest = test.extend<{}>({
 
       await waitForWebsite()
 
+      console.log('Installing third party extensions')
+
       for (const extension of thirdPartyExtensions) {
         await extension.install?.(context, extensionId)
       }
+
+      console.log('Context ready')
 
       await use(context)
       await context.close()

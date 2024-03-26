@@ -20,6 +20,8 @@ async function getAndCheckResult(page: Page | ElementHandle) {
       const result = await page.waitForSelector('.result')
       const textContent = await result.textContent()
 
+      console.log({ textContent })
+
       if (textContent?.startsWith('Your visitorId')) {
         const visitorIdElement = await result.waitForSelector('b')
         const visitorId = await visitorIdElement.textContent()
