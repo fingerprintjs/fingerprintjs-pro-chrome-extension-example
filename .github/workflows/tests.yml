@@ -5,11 +5,6 @@ on:
       - main
   schedule:
     - cron: '0 0 * * *'
-env:
-  # This env is required just to pass the build
-  WEBSITE_URL: https://localhost:8080/
-  EXTENSION_IDS: 123
-  API_KEY: 123
 
 jobs:
   build-and-check:

@@ -56,12 +56,9 @@ module.exports = (env, { mode = 'development' }) => ({
 
     new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT),
-    }),
-
-    new webpack.DefinePlugin({
       'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
+      'process.env.API_KEY': JSON.stringify(process.env.API_KEY ?? ''),
+      'process.env.EXTENSION_IDS': JSON.stringify(process.env.EXTENSION_IDS ?? ''),
     }),
-
-    new webpack.EnvironmentPlugin(['API_KEY', 'EXTENSION_IDS']),
   ],
 })

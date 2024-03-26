@@ -109,7 +109,10 @@ module.exports = (env, { mode }) => {
         ],
       }),
 
-      new webpack.EnvironmentPlugin(['API_KEY', 'WEBSITE_URL']),
+      new webpack.EnvironmentPlugin({
+        'process.env.API_KEY': JSON.stringify(process.env.API_KEY ?? ''),
+        'process.env.EXTENSION_IDS': JSON.stringify(process.env.EXTENSION_IDS ?? ''),
+      }),
 
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src', 'popup.html'),
