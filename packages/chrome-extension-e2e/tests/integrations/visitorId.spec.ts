@@ -1,4 +1,4 @@
-import { FingerprintStrategy } from 'chrome-extension/src/types'
+import { FingerprintStrategy } from '../../../chrome-extension/src/types'
 import { ElementHandle, Page } from 'playwright'
 import { navigateToPopup } from '../navigation'
 import { extensionTest } from '../setupPw'
