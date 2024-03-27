@@ -7,31 +7,6 @@
     "build": "webpack -c webpack.config.js --mode production",
     "zip": "pnpm build && cd build && zip -r ../build.zip *",
     "watch": "webpack -c webpack.config.js --watch --mode development",
-    "release": "semantic-release",
-    "release-dry": "semantic-release --dry-run",
     "publish-to-store": "pnpm zip && node scripts/publish.mjs"
-  },
-  "release": {
-    "extends": "semantic-release-monorepo",
-    "tagFormat": "chrome-extension-v${version}",
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
-        }
-      ],
-      "@semantic-release/github"
-    ]
   }
 }

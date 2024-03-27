@@ -1,38 +1,15 @@
-name: Release
-
+name: release
 on:
   push:
     branches:
       - main
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@129abb77bf5884e578fcaf1f37628e41622cc371
-        with:
-          version: 8
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Create .env file
-        run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
-          echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
-          echo "EXTENSION_IDS=${{ secrets.EXTENSION_IDS }}" >> .env
-
-      - name: Build apps
-        run: pnpm build
-
-      - name: Release
-        run: pnpm release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
-          HUSKY: 0
+  build-and-release:
+    name: 'Build project, run CI checks and publish new release'
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-typescript-project.yml@v1
+    with:
+      appId: ${{ vars.APP_ID }}
+    secrets:
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
