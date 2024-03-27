@@ -8,15 +8,9 @@
   </a>
 </p>
 <p align="center">
-<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml">
-    <img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml/badge.svg" alt="Build status">
-  </a>
-<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml">
-    <img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml/badge.svg" alt="Publish extension status">
-  </a>
-<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml">
-    <img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml/badge.svg" alt="Deploy website status">
-  </a>
+<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml/badge.svg" alt="Build status"></a>
+<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml/badge.svg" alt="Publish extension status"></a>
+<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml/badge.svg" alt="Deploy website status"></a>
 </p>
 <p align="center">
   <a href="https://discord.gg/39EpE2neBg">
