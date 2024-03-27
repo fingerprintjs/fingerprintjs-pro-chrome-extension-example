@@ -18,7 +18,12 @@
       }
     ],
     "@semantic-release/changelog",
-    "@semantic-release/npm",
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "packages/chrome-extension"
+      }
+    ],
     [
       "@semantic-release/git",
       {
