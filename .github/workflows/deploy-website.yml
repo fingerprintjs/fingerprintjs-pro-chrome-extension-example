@@ -2,28 +2,28 @@ name: Deploy website
 
 on:
   workflow_dispatch:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - main
 
 jobs:
   deploy-website:
     environment: 'production'
     runs-on: ubuntu-latest
-    # Ensure that for release event we trigger this workflow only for the correct tag
-    if: ${{ github.event_name != 'release' || contains(github.ref, 'website-v') }}
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@129abb77bf5884e578fcaf1f37628e41622cc371
+        with:
+          version: 8
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Build website
-        run: yarn run website:build
+        run: pnpm run website:build
         env:
           API_KEY: ${{ secrets.API_KEY }}
           EXTENSION_IDS: ${{ secrets.EXTENSION_IDS }}

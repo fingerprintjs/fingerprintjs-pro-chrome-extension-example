@@ -1,9 +1,9 @@
-import { PlaywrightTestConfig } from '@playwright/test';
-import dotenv from 'dotenv';
+import { PlaywrightTestConfig } from '@playwright/test'
+import dotenv from 'dotenv'
 
 dotenv.config({
   path: '../../.env',
-});
+})
 
 const config: PlaywrightTestConfig = {
   retries: 3,
@@ -14,6 +14,6 @@ const config: PlaywrightTestConfig = {
     trace: 'on-first-retry',
   },
   fullyParallel: false,
-};
+}
 
-export default config;
+export default config

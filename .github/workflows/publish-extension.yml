@@ -14,10 +14,15 @@ jobs:
     if: ${{ github.event_name != 'release' || contains(github.ref, 'chrome-extension-v') }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@129abb77bf5884e578fcaf1f37628e41622cc371
+        with:
+          version: 8
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Create .env file
         run: |
@@ -25,10 +30,10 @@ jobs:
           echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
 
       - name: Build extension
-        run: yarn extension:zip
+        run: pnpm extension:zip
 
       - name: Upload extension
-        run: yarn extension:publish
+        run: pnpm extension:publish
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}

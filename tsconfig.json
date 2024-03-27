@@ -1,7 +1,11 @@
 {
+  "extends": "@fingerprintjs/tsconfig-dx-team/tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitReturns": false,
     "outDir": "./lib",
     "sourceMap": true,
     "declaration": false,
@@ -18,7 +22,6 @@
     "skipLibCheck": true,
     "strictFunctionTypes": true,
     "skipDefaultLibCheck": true,
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "types": ["node", "chrome"]
   },

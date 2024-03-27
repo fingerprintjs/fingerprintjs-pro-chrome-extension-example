@@ -1,74 +1,72 @@
-import { Message } from './types';
+import { Message } from './types'
 
-let currentWindow: chrome.windows.Window | undefined;
+let currentWindow: chrome.windows.Window | undefined
 
 async function closeCurrentWindow() {
   if (currentWindow?.id) {
     try {
-      await chrome.windows.remove(currentWindow.id);
+      await chrome.windows.remove(currentWindow.id)
 
-      currentWindow = undefined;
+      currentWindow = undefined
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 }
 
 async function getFingerprint() {
-  await closeCurrentWindow();
+  await closeCurrentWindow()
 
   currentWindow = await chrome.windows.create({
     url: process.env.WEBSITE_URL as string,
     type: 'popup',
     focused: false,
-  });
+  })
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const handleExternalMsg = async (externalMessage: any, sender: any) => {
-      console.log('Received external message:', { externalMessage, sender });
+      console.log('Received external message:', { externalMessage, sender })
 
       if (externalMessage && externalMessage?.data?.visitorId) {
-        resolve(externalMessage);
+        resolve(externalMessage)
 
-        chrome.runtime.onMessageExternal.removeListener(handleExternalMsg);
+        chrome.runtime.onMessageExternal.removeListener(handleExternalMsg)
 
-        await closeCurrentWindow();
+        await closeCurrentWindow()
       }
-    };
+    }
 
-    chrome.runtime.onMessageExternal.addListener(handleExternalMsg);
-  });
+    chrome.runtime.onMessageExternal.addListener(handleExternalMsg)
+  })
 }
 
-chrome.runtime.onMessage.addListener(
-  (message: Message, sender, sendResponse) => {
-    if (message.type === 'get-visitor-id') {
-      getFingerprint().then(sendResponse);
+chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
+  if (message.type === 'get-visitor-id') {
+    getFingerprint().then(sendResponse)
 
-      return true;
-    }
+    return true
   }
-);
+})
 
-let lifeline: any;
+let lifeline: any
 
-chrome.runtime.onConnect.addListener(port => {
+chrome.runtime.onConnect.addListener((port) => {
   if (port.name === 'keepAlive') {
-    lifeline = port;
-    setTimeout(keepAliveForced, 295e3); // 5 minutes minus 5 seconds
-    port.onDisconnect.addListener(keepAliveForced);
+    lifeline = port
+    setTimeout(keepAliveForced, 295e3) // 5 minutes minus 5 seconds
+    port.onDisconnect.addListener(keepAliveForced)
   }
-});
+})
 
 function keepAliveForced() {
-  lifeline?.disconnect();
-  lifeline = null;
-  keepAlive();
+  lifeline?.disconnect()
+  lifeline = null
+  keepAlive()
 }
 
 async function keepAlive() {
   if (lifeline) {
-    return;
+    return
   }
 
   for (const tab of await chrome.tabs.query({ url: '*://*/*' })) {
@@ -76,18 +74,18 @@ async function keepAlive() {
       await chrome.scripting.executeScript({
         target: { tabId: tab.id as number },
         func: () => chrome.runtime.connect({ name: 'keepAlive' }),
-      });
-      chrome.tabs.onUpdated.removeListener(retryOnTabUpdate);
-      return;
+      })
+      chrome.tabs.onUpdated.removeListener(retryOnTabUpdate)
+      return
     } catch (e) {}
   }
-  chrome.tabs.onUpdated.addListener(retryOnTabUpdate);
+  chrome.tabs.onUpdated.addListener(retryOnTabUpdate)
 }
 
 async function retryOnTabUpdate(tabId: number, info: any) {
   if (info.url && /^(file|https?):/.test(info.url)) {
-    keepAlive();
+    keepAlive()
   }
 }
 
-keepAlive();
+keepAlive()

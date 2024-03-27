@@ -1,36 +1,15 @@
 name: Tests
 on:
-  pull_request:
+  push:
+    branches-ignore:
+      - main
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  test:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: nodemodules-${{ hashFiles('yarn.lock') }}
-          restore-keys: nodemodules-
-
-      - name: Install Node packages
-        run: yarn install
-
-      - name: Create .env file
-        run: cp .env.dist .env
-
-      - name: Build
-        run: yarn build
-
-      - name: Lint
-        run: yarn lint
-
+  build-and-check:
+    name: Build project and run CI checks
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/build-typescript-project.yml@v1
   chrome-extension-e2e:
     name: Chrome extension e2e tests
     strategy:
@@ -40,13 +19,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@129abb77bf5884e578fcaf1f37628e41622cc371
+        with:
+          version: 8
 
       - name: Install dependencies
-        run: yarn install && yarn list
+        run: pnpm install && pnpm list
+
+      - name: Install latest playwright
+        run: pnpm add playwright -w --lockfile-only
 
       - name: Setup playwright
-        run: yarn upgrade --pattern playwright --pure-lockfile && npx playwright install-deps && npx playwright --version
+        run: pnpm exec playwright install
+
+      - name: Print playwright version
+        run: pnpm exec playwright --version
 
       - name: Create .env file
         run: |
@@ -54,23 +44,23 @@ jobs:
           echo "WEBSITE_URL=https://localhost:8080/" >> .env
 
       - name: Build extension
-        run: yarn extension:build
+        run: pnpm extension:build
 
       - name: Run tests
         uses: GabrielBB/xvfb-action@86d97bde4a65fe9b290c0b3fb92c2c4ed0e5302d
         with:
-          run: yarn extension:e2e
+          run: pnpm extension:e2e
 
       - name: Upload trace
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Trace (OS ${{ matrix.os }})
           path: packages/chrome-extension-e2e/test-results
 
       - name: Upload Unit Test Results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Unit Test Results (OS ${{ matrix.os }})
           path: packages/chrome-extension-e2e/reports/report.xml
@@ -87,12 +77,12 @@ jobs:
     if: always()
     steps:
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@3bf80f8ff3396c9acdab73f00109f3cd06468544
+        uses: EnricoMi/publish-unit-test-result-action@30eadd5010312f995f0d3b3cff7fe2984f69409e
         with:
           files: 'artifacts/**/*.xml'
           check_name: 'Chrome Extension E2E Test Results'

@@ -1,0 +1,38 @@
+{
+  "branches": [
+    "main"
+  ],
+  "tagFormat": "chrome-extension-v${version}",
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "config": "@fingerprintjs/conventional-changelog-dx-team",
+        "releaseRules": "@fingerprintjs/conventional-changelog-dx-team/release-rules"
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "config": "@fingerprintjs/conventional-changelog-dx-team"
+      }
+    ],
+    "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "packages/chrome-extension"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "package.json"
+        ]
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}

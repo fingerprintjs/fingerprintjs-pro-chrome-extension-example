@@ -1,33 +1,14 @@
-name: Release
-
+name: release
 on:
   push:
     branches:
       - main
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Create .env file
-        run: |
-          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
-          echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
-          echo "EXTENSION_IDS=${{ secrets.EXTENSION_IDS }}" >> .env
-
-      - name: Build apps
-        run: yarn build
-
-      - name: Release
-        run: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
-          HUSKY: 0
+  build-and-release:
+    name: 'Build project, run CI checks and publish new release'
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-typescript-project.yml@v1
+    with:
+      appId: ${{ vars.APP_ID }}
+    secrets:
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}

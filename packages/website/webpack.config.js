@@ -1,14 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const dotenv = require('dotenv');
-const path = require('path');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const dotenv = require('dotenv')
+const path = require('path')
+const webpack = require('webpack')
 
-const outDir = path.resolve(__dirname, 'build');
+const outDir = path.resolve(__dirname, 'build')
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
-});
+})
 
 module.exports = (env, { mode = 'development' }) => ({
   entry: './src/index.ts',
@@ -44,7 +44,7 @@ module.exports = (env, { mode = 'development' }) => ({
     path: outDir,
   },
   devServer: {
-    https: true,
+    server: 'https',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -56,12 +56,9 @@ module.exports = (env, { mode = 'development' }) => ({
 
     new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT),
-    }),
-
-    new webpack.DefinePlugin({
       'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
+      'process.env.API_KEY': JSON.stringify(process.env.API_KEY ?? ''),
+      'process.env.EXTENSION_IDS': JSON.stringify(process.env.EXTENSION_IDS ?? ''),
     }),
-
-    new webpack.EnvironmentPlugin(['API_KEY', 'EXTENSION_IDS']),
   ],
-});
+})

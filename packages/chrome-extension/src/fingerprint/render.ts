@@ -1,12 +1,12 @@
-import { newWindowStrategy } from './strategies/newWindow.strategy';
-import { FingerprintStrategy } from '../types';
-import { iframeStrategy } from './strategies/iframe.strategy';
+import { newWindowStrategy } from './strategies/newWindow.strategy'
+import { FingerprintStrategy } from '../types'
+import { iframeStrategy } from './strategies/iframe.strategy'
 
 interface State {
-  strategy: FingerprintStrategy;
+  strategy: FingerprintStrategy
 }
 
-const logo = chrome.runtime.getURL('assets/logo.png');
+const logo = chrome.runtime.getURL('assets/logo.png')
 
 export function renderFingerprintSection(target: Element) {
   target.innerHTML = `
@@ -90,53 +90,49 @@ export function renderFingerprintSection(target: Element) {
         </div>
     </div>
   </div>
-  `;
+  `
 
-  setupListeners(target);
+  setupListeners(target)
 }
 
 function setupListeners(container: Element) {
   const state: State = {
     strategy: FingerprintStrategy.NewWindow,
-  };
+  }
 
-  const getFingerprintBtn =
-    container.querySelector<HTMLButtonElement>('.get-fingerprint')!;
-  const resultContainer = container.querySelector('.result')!;
-  const strategyRadio = container.querySelectorAll<HTMLInputElement>(
-    'input[name="strategy"]'
-  );
+  const getFingerprintBtn = container.querySelector<HTMLButtonElement>('.get-fingerprint')!
+  const resultContainer = container.querySelector('.result')!
+  const strategyRadio = container.querySelectorAll<HTMLInputElement>('input[name="strategy"]')
 
-  strategyRadio.forEach(radio => {
-    radio.addEventListener('change', event => {
-      state.strategy = (event.target as HTMLInputElement)
-        .value as FingerprintStrategy;
-    });
-  });
+  strategyRadio.forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+      state.strategy = (event.target as HTMLInputElement).value as FingerprintStrategy
+    })
+  })
 
   getFingerprintBtn.addEventListener('click', async () => {
-    let visitorId: string | undefined;
+    let visitorId: string | undefined
 
-    resultContainer.innerHTML = '';
-    getFingerprintBtn.disabled = true;
-    getFingerprintBtn.classList.add('loading');
+    resultContainer.innerHTML = ''
+    getFingerprintBtn.disabled = true
+    getFingerprintBtn.classList.add('loading')
 
     switch (state.strategy) {
       case FingerprintStrategy.NewWindow:
-        visitorId = await newWindowStrategy();
-        break;
+        visitorId = await newWindowStrategy()
+        break
 
       case FingerprintStrategy.Iframe:
-        visitorId = await iframeStrategy(container);
+        visitorId = await iframeStrategy(container)
 
-        break;
+        break
     }
 
-    getFingerprintBtn.disabled = false;
-    getFingerprintBtn.classList.remove('loading');
+    getFingerprintBtn.disabled = false
+    getFingerprintBtn.classList.remove('loading')
 
     if (visitorId) {
-      resultContainer.innerHTML = `Your visitorId: <b>${visitorId}</b>`;
+      resultContainer.innerHTML = `Your visitorId: <b>${visitorId}</b>`
     }
-  });
+  })
 }
