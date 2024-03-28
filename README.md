@@ -30,7 +30,12 @@ This repository contains an example Chrome extension that uses the Fingerprint P
 
 ## Installation
 
-You can install the example chrome extension from [Chrome Web Store](https://chrome.google.com/webstore/detail/fingerprintjs-example-bro/knppbjgkegnlbhddedbilnfmnkdocekn).
+You can download the latest version of the extension from the [Releases](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/releases) page.
+To install the extension, follow these steps:
+- Head to `chrome://extensions/` page in your browser.
+- Click **Load unpacked**.
+- Select downloaded `chrome-extension.zip` file.
+- You should see the **FingerprintJS Example Browser Extension** extension, make sure that it is activated.
 
 ## How it works
 

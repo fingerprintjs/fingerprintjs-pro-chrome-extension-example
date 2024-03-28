@@ -5,8 +5,7 @@
   "description": "Sample chrome extension that uses FingerprintJS FingerprintJS Pro JavaScript agent.",
   "scripts": {
     "build": "webpack -c webpack.config.js --mode production",
-    "zip": "pnpm build && cd build && zip -r ../build.zip *",
-    "watch": "webpack -c webpack.config.js --watch --mode development",
-    "publish-to-store": "pnpm zip && node scripts/publish.mjs"
+    "zip": "pnpm build && cd build && zip -r ../chrome-extension.zip *",
+    "watch": "webpack -c webpack.config.js --watch --mode development"
   }
 }

@@ -7,3 +7,4 @@ packages/chrome-extension-e2e/tests/contexts
 
 **/.DS_Store
 **/report.xml
+*.zip
