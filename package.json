@@ -10,7 +10,6 @@
     "extension:zip": "pnpm --filter chrome-extension zip",
     "extension:watch": "pnpm --filter chrome-extension watch",
     "extension:e2e": "pnpm --filter chrome-extension-e2e e2e",
-    "extension:publish": "pnpm --filter chrome-extension publish-to-store",
     "website:build": "pnpm --filter website build",
     "website:start": "pnpm --filter website start",
     "build": "pnpm website:build && pnpm extension:build",

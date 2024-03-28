@@ -25,6 +25,12 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "pnpm extension:zip"
+      }
+    ],
+    [
       "@semantic-release/git",
       {
         "assets": [
@@ -33,6 +39,16 @@
         ]
       }
     ],
-    "@semantic-release/github"
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "packages/chrome-extension/chrome-extension.zip",
+            "label": "chrome-extension.zip"
+          }
+        ]
+      }
+    ]
   ]
 }
