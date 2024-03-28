@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/compare/chrome-extension-v1.0.3...chrome-extension-v1.1.0) (2024-03-28)
+
+
+### Features
+
+* remove extensions from store, provide it in GitHub releases instead ([76a791e](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/commit/76a791ee78c7417003db5695b6a6a5c3ba19c6ff))
+
+
+### Documentation
+
+* **README:** fix links formatting ([737d0e7](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/commit/737d0e7673fe4792cc1116442d739cde08ace3a7))
+
 ## [1.0.3](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/compare/chrome-extension-v1.0.2...chrome-extension-v1.0.3) (2024-03-27)
 
 
