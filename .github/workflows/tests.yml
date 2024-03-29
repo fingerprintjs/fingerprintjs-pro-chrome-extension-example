@@ -6,10 +6,16 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+# TODO Env (WEBSITE_URL) is not passed correctly to the job
 jobs:
   build-and-check:
     name: Build project and run CI checks
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/build-typescript-project.yml@v1
+    secrets: inherit
+    with:
+      # Output WEBSITE_URL to .env file
+      runAfterInstall: |
+        echo "WEBSITE_URL=${{ secrets.WEBSITE_URL }}" >> .env
   chrome-extension-e2e:
     name: Chrome extension e2e tests
     strategy:

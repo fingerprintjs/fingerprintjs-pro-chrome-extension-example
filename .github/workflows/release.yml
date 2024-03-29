@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+env:
+  WEBSITE_URL: ${{ secrets.WEBSITE_URL }}
+
 jobs:
   build-and-release:
     name: 'Build project, run CI checks and publish new release'
