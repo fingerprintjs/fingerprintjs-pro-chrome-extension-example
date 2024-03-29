@@ -9,13 +9,10 @@
 </p>
 <p align="center">
 <a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/tests.yml/badge.svg" alt="Build status"></a>
-<a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/publish-extension.yml/badge.svg" alt="Publish extension status"></a>
 <a href="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml"><img src="https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/actions/workflows/deploy-website.yml/badge.svg" alt="Deploy website status"></a>
 </p>
 <p align="center">
-  <a href="https://discord.gg/39EpE2neBg">
-    <img src="https://img.shields.io/discord/852099967190433792?style=for-the-badge&label=Discord&logo=Discord&logoColor=white" alt="Discord server">
-  </a>
+  <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=for-the-badge&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
 </p>
 
 # Fingerprint Pro Chrome Extension Example
