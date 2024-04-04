@@ -12,10 +12,6 @@ dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
 })
 
-console.log({
-  WEBSITE_URL: process.env.WEBSITE_URL,
-})
-
 function parseVersion(version) {
   const safeVersion = version.split('-')[0]
 
