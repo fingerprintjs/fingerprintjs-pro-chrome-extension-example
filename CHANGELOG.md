@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/compare/chrome-extension-v1.1.0...chrome-extension-v1.1.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* fix missing website URL in extension manifest ([da8564d](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/commit/da8564d41362e8fd347ff80f6819627981cc99fb))
+
 ## [1.1.0](https://github.com/fingerprintjs/fingerprintjs-pro-chrome-extension-example/compare/chrome-extension-v1.0.3...chrome-extension-v1.1.0) (2024-03-28)
 
 
