@@ -109,9 +109,7 @@ module.exports = (env, { mode }) => {
         ],
       }),
 
-      new webpack.EnvironmentPlugin({
-        WEBSITE_URL: process.env.WEBSITE_URL ?? '',
-      }),
+      new webpack.EnvironmentPlugin(['WEBSITE_URL']),
 
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src', 'popup.html'),
