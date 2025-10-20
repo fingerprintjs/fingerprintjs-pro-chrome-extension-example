@@ -47,7 +47,7 @@ importers:
         version: 0.0.2
       '@playwright/test':
         specifier: latest
-        version: 1.46.1
+        version: 1.56.1
       '@types/adm-zip':
         specifier: ^0.5.0
         version: 0.5.0
@@ -65,13 +65,13 @@ importers:
         version: 0.5.12
       clean-webpack-plugin:
         specifier: ^4.0.0
-        version: 4.0.0(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 4.0.0(webpack@5.94.0)
       commitizen:
         specifier: ^4.2.4
         version: 4.3.0
       copy-webpack-plugin:
         specifier: ^12.0.2
-        version: 12.0.2(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 12.0.2(webpack@5.94.0)
       cz-conventional-changelog:
         specifier: ^3.3.0
         version: 3.3.0
@@ -80,13 +80,13 @@ importers:
         version: 16.4.5
       file-loader:
         specifier: ^6.2.0
-        version: 6.2.0(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 6.2.0(webpack@5.94.0)
       html-loader:
         specifier: ^5.0.0
-        version: 5.0.0(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 5.0.0(webpack@5.94.0)
       html-webpack-plugin:
         specifier: ^5.6.0
-        version: 5.6.0(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 5.6.0(webpack@5.94.0)
       husky:
         specifier: ^9.0.11
         version: 9.0.11
@@ -95,13 +95,13 @@ importers:
         version: 15.2.2(typescript@5.4.3)
       playwright:
         specifier: latest
-        version: 1.46.1
+        version: 1.56.1
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.10(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 5.3.10(webpack@5.94.0)
       ts-loader:
         specifier: ^9.5.1
-        version: 9.5.1(typescript@5.4.3)(webpack@5.94.0(webpack-cli@5.1.4))
+        version: 9.5.1(typescript@5.4.3)(webpack@5.94.0)
       typescript:
         specifier: ^5.4.3
         version: 5.4.3
@@ -350,8 +350,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@playwright/test@1.46.1':
-    resolution: {integrity: sha512-Fq6SwLujA/DOIvNC2EL/SojJnkKf/rAwJ//APpJJHRyMi1PdKrY3Az+4XNQ51N4RTbItbIByQ0jgd1tayq1aeA==}
+  '@playwright/test@1.56.1':
+    resolution: {integrity: sha512-vSMYtL/zOcFpvJCW71Q/OEGQb7KYBPAdKh35WNSkaZA75JlAO8ED8UN6GUNTm3drWomcbcqRPFqQbLae8yBTdg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -394,6 +394,9 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/estree@1.0.8':
+    resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
   '@types/express-serve-static-core@4.17.35':
     resolution: {integrity: sha512-wALWQwrgiB2AWTT91CB62b6Yt0sNHpznUXeZEcnPU3DRdlDIz74x8Qg1UUYKSVFi+va5vKOLYRBI1bRKiLLKIg==}
@@ -1334,6 +1337,7 @@ packages:
   eslint@8.56.0:
     resolution: {integrity: sha512-Go19xM6T9puCOWntie1/P997aXxFsOi37JIHRWI514Hc6ZnaHGKY9xFhrU65RT6CcBEzZoGG1e6Nq+DT04ZtZQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -1506,6 +1510,11 @@ packages:
 
   fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
+  fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
@@ -2331,13 +2340,13 @@ packages:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
 
-  playwright-core@1.46.1:
-    resolution: {integrity: sha512-h9LqIQaAv+CYvWzsZ+h3RsrqCStkBHlgo6/TJlFst3cOTlLghBQlJwPOZKQJTKNaD3QIB7aAVQ+gfWbN3NXB7A==}
+  playwright-core@1.56.1:
+    resolution: {integrity: sha512-hutraynyn31F+Bifme+Ps9Vq59hKuUCz7H1kDOcBs+2oGguKkWTU50bBWrtz34OUWmIwpBTWDxaRPXrIXkgvmQ==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.46.1:
-    resolution: {integrity: sha512-oPcr1yqoXLCkgKtD5eNUPLiN40rYEM39odNpIb6VE6S7/15gJmA1NzVv6zJYusV0e7tzvkU/utBFNa/Kpxmwng==}
+  playwright@1.56.1:
+    resolution: {integrity: sha512-aFi5B0WovBHTEvpM3DzXTUaeN6eN0qWnTkKx4NQaH4Wvcmc153PdaY2UBdSYKaGYw+UyWXSVyxDUg5DoPEttjw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3392,9 +3401,9 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@playwright/test@1.46.1':
+  '@playwright/test@1.56.1':
     dependencies:
-      playwright: 1.46.1
+      playwright: 1.56.1
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
@@ -3435,11 +3444,14 @@ snapshots:
 
   '@types/eslint@8.37.0':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.8
       '@types/json-schema': 7.0.15
     optional: true
 
   '@types/estree@1.0.5': {}
+
+  '@types/estree@1.0.8':
+    optional: true
 
   '@types/express-serve-static-core@4.17.35':
     dependencies:
@@ -3779,17 +3791,17 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.94.0)':
     dependencies:
       webpack: 5.94.0(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.94.0)':
     dependencies:
       webpack: 5.94.0(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.0.4)(webpack@5.94.0)':
     dependencies:
       webpack: 5.94.0(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0)
@@ -4026,7 +4038,7 @@ snapshots:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   chrome-trace-event@1.0.3: {}
 
@@ -4036,7 +4048,7 @@ snapshots:
     dependencies:
       source-map: 0.6.1
 
-  clean-webpack-plugin@4.0.0(webpack@5.94.0(webpack-cli@5.1.4)):
+  clean-webpack-plugin@4.0.0(webpack@5.94.0):
     dependencies:
       del: 4.1.1
       webpack: 5.94.0(webpack-cli@5.1.4)
@@ -4181,7 +4193,7 @@ snapshots:
 
   cookie@0.5.0: {}
 
-  copy-webpack-plugin@12.0.2(webpack@5.94.0(webpack-cli@5.1.4)):
+  copy-webpack-plugin@12.0.2(webpack@5.94.0):
     dependencies:
       fast-glob: 3.3.2
       glob-parent: 6.0.2
@@ -4627,7 +4639,7 @@ snapshots:
     dependencies:
       flat-cache: 3.0.4
 
-  file-loader@6.2.0(webpack@5.94.0(webpack-cli@5.1.4)):
+  file-loader@6.2.0(webpack@5.94.0):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
@@ -4707,6 +4719,9 @@ snapshots:
   fs.realpath@1.0.0: {}
 
   fsevents@2.3.2:
+    optional: true
+
+  fsevents@2.3.3:
     optional: true
 
   function-bind@1.1.1: {}
@@ -4852,7 +4867,7 @@ snapshots:
 
   html-entities@2.5.2: {}
 
-  html-loader@5.0.0(webpack@5.94.0(webpack-cli@5.1.4)):
+  html-loader@5.0.0(webpack@5.94.0):
     dependencies:
       html-minifier-terser: 7.2.0
       parse5: 7.1.2
@@ -4878,7 +4893,7 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.17.4
 
-  html-webpack-plugin@5.6.0(webpack@5.94.0(webpack-cli@5.1.4)):
+  html-webpack-plugin@5.6.0(webpack@5.94.0):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -5501,11 +5516,11 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  playwright-core@1.46.1: {}
+  playwright-core@1.56.1: {}
 
-  playwright@1.46.1:
+  playwright@1.56.1:
     dependencies:
-      playwright-core: 1.46.1
+      playwright-core: 1.56.1
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -5939,7 +5954,7 @@ snapshots:
 
   tapable@2.2.1: {}
 
-  terser-webpack-plugin@5.3.10(webpack@5.94.0(webpack-cli@5.1.4)):
+  terser-webpack-plugin@5.3.10(webpack@5.94.0):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
@@ -5990,7 +6005,7 @@ snapshots:
     dependencies:
       typescript: 5.4.3
 
-  ts-loader@9.5.1(typescript@5.4.3)(webpack@5.94.0(webpack-cli@5.1.4)):
+  ts-loader@9.5.1(typescript@5.4.3)(webpack@5.94.0):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.14.0
@@ -6124,9 +6139,9 @@ snapshots:
   webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-dev-server@5.0.4)(webpack@5.94.0))(webpack-dev-server@5.0.4(webpack-cli@5.1.4)(webpack@5.94.0))(webpack@5.94.0(webpack-cli@5.1.4))
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.94.0)
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.94.0)
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.0.4)(webpack@5.94.0)
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -6140,7 +6155,7 @@ snapshots:
     optionalDependencies:
       webpack-dev-server: 5.0.4(webpack-cli@5.1.4)(webpack@5.94.0)
 
-  webpack-dev-middleware@7.1.1(webpack@5.94.0(webpack-cli@5.1.4)):
+  webpack-dev-middleware@7.1.1(webpack@5.94.0):
     dependencies:
       colorette: 2.0.20
       memfs: 4.8.0
@@ -6181,7 +6196,7 @@ snapshots:
       serve-index: 1.9.1
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.1.1(webpack@5.94.0(webpack-cli@5.1.4))
+      webpack-dev-middleware: 7.1.1(webpack@5.94.0)
       ws: 8.16.0
     optionalDependencies:
       webpack: 5.94.0(webpack-cli@5.1.4)
@@ -6221,7 +6236,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.94.0(webpack-cli@5.1.4))
+      terser-webpack-plugin: 5.3.10(webpack@5.94.0)
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
